@@ -32,7 +32,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CSCodeCompiler.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,11 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompileFormulas\HashCompile.cs" />
+    <Compile Include="Compilers\ICompiler.cs" />
+    <Compile Include="CompileFormulas\ICompileFormula.cs" />
+    <Compile Include="CompileFormulas\SimpleCompile.cs" />
+    <Compile Include="Compilers\TemplateCompiler.cs" />
+    <Compile Include="Compilers\JSONCompiler.cs" />
+    <Compile Include="IO\IViewer.cs" />
+    <Compile Include="IO\IWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CompilePlans\" />
+    <Folder Include="CompileProcesses\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="ParsePlans\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
