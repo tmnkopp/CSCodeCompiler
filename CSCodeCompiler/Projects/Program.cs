@@ -10,13 +10,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
-namespace CSCodeCompiler
+namespace CSCodeCompiler.Projects
 {
     class Program
     { 
-        static void Main(string[] args)
+        public static void Run(string[] args)
         {
-            CSCodeCompiler.Projects.Sandbox.Run(new string[] { });
+            Console.WriteLine("hello Projects.Program");
+            Console.Read();
         } 
     } 
 }

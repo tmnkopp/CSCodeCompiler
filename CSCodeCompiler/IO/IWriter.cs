@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace CSCodeCompiler.IO
         {
             File.WriteAllText($"{_path}", writeme);
             Process p = new Process();
-            p.StartInfo.FileName = "notepad.exe";
+            p.StartInfo.FileName = ConfigurationManager.AppSettings["CodeViewer"].ToString();
             p.StartInfo.Arguments = _path;
             p.Start();
         }

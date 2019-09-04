@@ -55,16 +55,22 @@
     <Compile Include="Compilers\ICompiler.cs" />
     <Compile Include="CompileFormulas\ICompileFormula.cs" />
     <Compile Include="CompileFormulas\CustomCompile.cs" />
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Data\DBUtils.cs" />
     <Compile Include="IO\IReader.cs" />
     <Compile Include="IO\IWriter.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projects\Parser.cs" />
+    <Compile Include="Projects\Sandbox.cs" />
+    <Compile Include="Projects\Program.cs" />
+    <Compile Include="Projects\frmVal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Extentions\" />
     <Folder Include="Models\" />
     <Folder Include="Processes\" />
   </ItemGroup>
