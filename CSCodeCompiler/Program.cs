@@ -1,6 +1,7 @@
 ﻿using CSCodeCompiler.CompileFormulas;
 using CSCodeCompiler.CompilerFormulas;
 using CSCodeCompiler.Compilers;
+using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
 using Newtonsoft.Json;
 using System;
@@ -15,13 +16,19 @@ namespace CSCodeCompiler
     { 
         static void Main(string[] args)
         {
-            string _json = "{\"key1\":\"val1\",\"key2\":\"val2\"}";
-            HashCompile HashComp = new HashCompile(_json);
-            string result = HashComp.Compile("key1   key2");
 
-            NotepadViewer viewer = new NotepadViewer();
-            viewer.View(result);
-
+            //DBUtils db = new DBUtils();
+            //string data = db.DBLookup("select QT.CODE + '\n' from fsma_QuestionTypes QT ");
+            //string data = db.KeyValueLookup("CODE", "description", "fsma_QuestionTypes");
+            //string regex = @"\\d\\w\\.";
+              Dictionary<string, string> dict 
+            = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
+             
+            FormulaCompiler compiler = new FormulaCompiler();
+            compiler.CompileSource(new FileReader(@"c:\temp\input.txt"));
+            compiler.Execute(new HashCompile(dict));
+            //compiler.Execute(new IndexCompile(67890,0));
+            compiler.CompileDest(new TextConsole());
         } 
     } 
 }

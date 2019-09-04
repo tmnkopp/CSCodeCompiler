@@ -1,4 +1,5 @@
 ﻿using CSCodeCompiler.CompilerFormulas;
+using CSCodeCompiler.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,8 @@ namespace CSCodeCompiler.Compilers
 {
     public interface ICompiler
     { 
-        //compile what 
-        void Execute(ICompileFormula compileFormula);//compile how
-        //compile to    
-    }
-
+        void CompileSource(IReader reader);
+        void Execute(ICompileFormula compileFormula); 
+        void CompileDest(IWriter writer);
+    } 
 }

@@ -9,5 +9,5 @@ namespace CSCodeCompiler.CompilerFormulas
     public interface ICompileFormula
     {
          string Compile(string compileme);
-    }
+    } 
 }

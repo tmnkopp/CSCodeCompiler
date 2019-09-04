@@ -9,19 +9,15 @@ namespace CSCodeCompiler.CompileFormulas
 {
     public class HashCompile : ICompileFormula
     {
-        private string _json = "";
-        public HashCompile(string json)
+        private Dictionary<string, string> _dict;
+        public HashCompile(Dictionary<string, string> Dict)
         {
-            _json = json;
+            _dict = Dict;
         }
         public string Compile(string compileme)
         {
-            if (_json == "")
-                return "";
-            Dictionary<string, string> dict =
-                JsonConvert.DeserializeObject<Dictionary<string, string>>(_json);
-            foreach (var item in dict)
-                compileme = compileme.Replace($"{item.Key}",item.Value);
+            foreach (var item in _dict)
+                compileme = compileme.Replace(item.Key,item.Value);
             return compileme;        
         }
     }

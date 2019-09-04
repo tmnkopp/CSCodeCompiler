@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,13 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompileFormulas\RegexCompile.cs" />
     <Compile Include="CompileFormulas\HashCompile.cs" />
+    <Compile Include="CompileFormulas\IndexCompile.cs" />
+    <Compile Include="Compilers\FormulaCompiler.cs" />
     <Compile Include="Compilers\ICompiler.cs" />
     <Compile Include="CompileFormulas\ICompileFormula.cs" />
-    <Compile Include="CompileFormulas\SimpleCompile.cs" />
-    <Compile Include="Compilers\TemplateCompiler.cs" />
-    <Compile Include="Compilers\JSONCompiler.cs" />
-    <Compile Include="IO\IViewer.cs" />
+    <Compile Include="CompileFormulas\CustomCompile.cs" />
+    <Compile Include="Data\DBUtils.cs" />
+    <Compile Include="IO\IReader.cs" />
     <Compile Include="IO\IWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,11 +65,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CompilePlans\" />
-    <Folder Include="CompileProcesses\" />
-    <Folder Include="Data\" />
     <Folder Include="Models\" />
-    <Folder Include="ParsePlans\" />
+    <Folder Include="Processes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
