@@ -22,11 +22,8 @@ namespace CSCodeCompiler.Projects
             //string regex = @"\\d\\w\\.";
             //Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
 
-            FormulaCompiler compiler = new FormulaCompiler();
-            compiler.CompileSource(new FileReader(@"c:\temp\input.txt"));
-            compiler.Execute(new CustomCompile());
-            //compiler.Execute(new IndexCompile(67890,0));
-            compiler.CompileDest(new TextConsole());
+            FormulaCompiler compiler = new FormulaCompiler(@"c:\temp\input.txt"); 
+            compiler.ExecuteAndView(new RepeaterCompile(500,505));  
         } 
     } 
 }

@@ -48,9 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompileFormulas\RepeaterCompile.cs" />
     <Compile Include="CompileFormulas\RegexCompile.cs" />
     <Compile Include="CompileFormulas\HashCompile.cs" />
     <Compile Include="CompileFormulas\IndexCompile.cs" />
+    <Compile Include="Compilers\FormulaParser.cs" />
     <Compile Include="Compilers\FormulaCompiler.cs" />
     <Compile Include="Compilers\ICompiler.cs" />
     <Compile Include="CompileFormulas\ICompileFormula.cs" />
@@ -72,6 +74,7 @@
   <ItemGroup>
     <Folder Include="Extentions\" />
     <Folder Include="Models\" />
+    <Folder Include="Parser\" />
     <Folder Include="Processes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

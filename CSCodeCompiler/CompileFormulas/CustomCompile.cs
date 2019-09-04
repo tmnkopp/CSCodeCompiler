@@ -11,6 +11,7 @@ namespace CSCodeCompiler.CompilerFormulas
         private string Customize(string result) {
             result = result.Replace("~", "");
             result = string.Format("{1}{0}{2}", result, "","");
+       
             return result;
         }
 
