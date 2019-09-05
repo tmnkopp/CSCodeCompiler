@@ -1,14 +1,8 @@
-﻿using CSCodeCompiler.CompileFormulas;
-using CSCodeCompiler.CompilerFormulas;
-using CSCodeCompiler.Compilers;
+﻿using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
-using CSCodeCompiler.IO;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+using CSCodeCompiler.IO; 
+using System;   
 using System.Threading.Tasks; 
 namespace CSCodeCompiler
 {
@@ -16,7 +10,7 @@ namespace CSCodeCompiler
     { 
         static void Main(string[] args)
         {
-            CSCodeCompiler.Projects.Sandbox.Run(new string[] { });
+            CSCodeCompiler.Projects.DB.Run(new string[] { });
         } 
     } 
 }

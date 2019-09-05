@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.CompilerFormulas
+namespace CSCodeCompiler.Strategies
 {
-    public class CustomCompile: ICompileFormula
+    public class CustomCompile: IStrategy
     {
         private string Customize(string result) {
             result = result.Replace("~", "");
-            result = string.Format("{1}{0}{2}", result, "","");
-       
+            result = string.Format("{1}{0}{2}", result, "",""); 
             return result;
         }
 
-        public string Compile(string compileme)
+        public string Execute(string compileme)
         {
             StringBuilder result = new StringBuilder();
             string[] lines = compileme.Split('\n'); 

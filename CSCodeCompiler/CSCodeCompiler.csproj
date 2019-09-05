@@ -48,14 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompileFormulas\RepeaterCompile.cs" />
-    <Compile Include="CompileFormulas\RegexCompile.cs" />
-    <Compile Include="CompileFormulas\HashCompile.cs" />
-    <Compile Include="CompileFormulas\IndexCompile.cs" />
-    <Compile Include="Compilers\FormulaCompiler.cs" />
-    <Compile Include="Compilers\ICompiler.cs" />
-    <Compile Include="CompileFormulas\ICompileFormula.cs" />
-    <Compile Include="CompileFormulas\CustomCompile.cs" />
+    <Compile Include="Strategies\Compilers\RepeaterCompile.cs" />
+    <Compile Include="Strategies\Compilers\RegexCompile.cs" />
+    <Compile Include="Strategies\Compilers\HashCompile.cs" />
+    <Compile Include="Strategies\Compilers\IndexCompile.cs" />
+    <Compile Include="Macros\Macro.cs" />
+    <Compile Include="Macros\IMacro.cs" />
+    <Compile Include="Strategies\Compilers\ICompileFormula.cs" />
+    <Compile Include="Strategies\Compilers\CustomCompile.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Data\DBUtils.cs" />
     <Compile Include="IO\IReader.cs" />
@@ -63,15 +63,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Projects\Parser.cs" />
     <Compile Include="Projects\Sandbox.cs" />
-    <Compile Include="Projects\Program.cs" />
+    <Compile Include="Projects\DB.cs" />
     <Compile Include="Projects\frmVal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategies\Parsers\KeyValueParse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extentions\" />
     <Folder Include="Models\" />
-    <Folder Include="Parsers\" />
     <Folder Include="Processes\" />
+    <Folder Include="Strategies\Formatters\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

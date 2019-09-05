@@ -1,6 +1,6 @@
-﻿using CSCodeCompiler.CompileFormulas;
-using CSCodeCompiler.CompilerFormulas;
-using CSCodeCompiler.Compilers;
+﻿using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
 using Newtonsoft.Json;
