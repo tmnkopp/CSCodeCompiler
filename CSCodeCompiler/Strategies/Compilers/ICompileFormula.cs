@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.CompilerFormulas
+namespace CSCodeCompiler.Strategies
 {
-    public interface ICompileFormula
+    public interface IStrategy
     {
-         string Compile(string compileme);
+         string Execute(string content);
     } 
 }

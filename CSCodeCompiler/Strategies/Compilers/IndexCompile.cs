@@ -1,13 +1,13 @@
-﻿using CSCodeCompiler.CompilerFormulas;
+﻿using CSCodeCompiler.Strategies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.CompileFormulas
+namespace CSCodeCompiler.Strategies
 {
-    public class IndexCompile : ICompileFormula
+    public class IndexCompile : IStrategy
     {
         private int _seed = 0;
         private int _reset = 1;
@@ -16,7 +16,7 @@ namespace CSCodeCompiler.CompileFormulas
             _seed = Seed-1;
             _reset = Reset;
         }
-        public string Compile(string compileme)
+        public string Execute(string compileme)
         {
             StringBuilder result = new StringBuilder();
             string[] lines = compileme.Split('\n');

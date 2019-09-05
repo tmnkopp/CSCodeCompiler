@@ -1,13 +1,13 @@
-﻿using CSCodeCompiler.CompilerFormulas;
+﻿using CSCodeCompiler.Strategies;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace CSCodeCompiler.CompileFormulas
+namespace CSCodeCompiler.Strategies
 {
-    public class RepeaterCompile : ICompileFormula
+    public class RepeaterCompile : IStrategy
     {
         private int _from = 0;
         private int _to = 1;
@@ -16,7 +16,7 @@ namespace CSCodeCompiler.CompileFormulas
             _from = From;
             _to = To;
         }
-        public string Compile(string compileme)
+        public string Execute(string compileme)
         {
             if (_from >= _to)
                 throw new InvalidOperationException(); 

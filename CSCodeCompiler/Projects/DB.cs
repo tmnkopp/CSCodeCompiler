@@ -1,6 +1,5 @@
-﻿using CSCodeCompiler.CompileFormulas;
-using CSCodeCompiler.CompilerFormulas;
-using CSCodeCompiler.Compilers;
+﻿using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
 using Newtonsoft.Json;
@@ -12,12 +11,14 @@ using System.Text;
 using System.Threading.Tasks; 
 namespace CSCodeCompiler.Projects
 {
-    class Program
+    class DB
     { 
         public static void Run(string[] args)
         {
-            Console.WriteLine("hello Projects.Program");
-            Console.Read();
+            DBUtils db = new DBUtils();
+            string data = db.DBLookup("select QT.CODE + '\n' from fsma_QuestionTypes QT ");
+            TextConsole tw = new TextConsole();
+            tw.Write(data);
         } 
     } 
 }
