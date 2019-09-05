@@ -20,3 +20,4 @@ namespace CSCodeCompiler
         } 
     } 
 }
+//git rm --cached CSCodeCompiler/App.config

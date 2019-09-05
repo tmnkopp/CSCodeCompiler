@@ -16,14 +16,16 @@ namespace CSCodeCompiler.Projects
     { 
         public static void Run(string[] args)
         {
-            //DBUtils db = new DBUtils();
-            //string data = db.DBLookup("select QT.CODE + '\n' from fsma_QuestionTypes QT ");
-            //string data = db.KeyValueLookup("CODE", "description", "fsma_QuestionTypes");
+            DBUtils db = new DBUtils();
+            //string data = db.DBLookup("SELECT CODE + '\n' FROM fsma_QuestionTypes");
+            string data = db.KeyValueLookup("CODE", "description", "fsma_QuestionTypes");
             //string regex = @"\\d\\w\\.";
             //Dictionary<string, string> dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
 
-            FormulaCompiler compiler = new FormulaCompiler(@"c:\temp\input.txt"); 
-            compiler.ExecuteAndView(new RepeaterCompile(500,505));  
+            TextConsole fw = new TextConsole();
+            fw.Write(data);
+            //FormulaCompiler compiler = new FormulaCompiler(@"c:\temp\input.txt"); 
+            //compiler.ExecuteAndView(new RepeaterCompile(500,505));  
         } 
     } 
 }
