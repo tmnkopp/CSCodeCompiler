@@ -6,7 +6,7 @@
   </appSettings>
 
   <connectionStrings>
-    <add        name="Cyberscope123"        connectionString=";              Initial Catalog=Cyberscope123;              Data Source=DESKTOP-546VFJS\SQLEXPRESS;              Integrated Security=SSPI" />
+    <add        name="default"        connectionString=";              Initial Catalog=Cyberscope123;              Data Source=DESKTOP-546VFJS\SQLEXPRESS;              Integrated Security=SSPI" />
 
   </connectionStrings>
 </configuration>

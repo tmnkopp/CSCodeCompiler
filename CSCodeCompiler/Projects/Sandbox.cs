@@ -15,8 +15,7 @@ namespace CSCodeCompiler.Projects
     class Sandbox
     { 
         public static void Run(string[] args)
-        {
-
+        { 
             Macro macro = new Macro(@"c:\temp\input.txt");
             List<IStrategy> strat = new List<IStrategy>();
             strat.Add(new RepeaterCompile(500, 505));
