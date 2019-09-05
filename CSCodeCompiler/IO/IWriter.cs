@@ -23,7 +23,7 @@ namespace CSCodeCompiler.IO
     }
     public class FileWriter : IWriter
     {
-        private string _path = @"c:\temp\_output.txt";
+        private string _path = ConfigurationManager.ConnectionStrings["DefaultDest"].ToString();
         public FileWriter( ) {
         }
         public FileWriter(string Path)
@@ -38,7 +38,7 @@ namespace CSCodeCompiler.IO
     
     public class TextConsole : IWriter
     {
-        private string _path = @"c:\temp\_output.txt";
+        private string _path = ConfigurationManager.AppSettings["DefaultDest"].ToString();
         public TextConsole()
         {
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CSCodeCompiler.Strategies;
 using CSCodeCompiler.IO;
 using CSCodeCompiler.Macros;
+using System.Configuration;
 
 namespace CSCodeCompiler.Macros
 { 
@@ -13,7 +14,9 @@ namespace CSCodeCompiler.Macros
     {
         private StringBuilder _result = new StringBuilder();
         public Macro()
-        { 
+        {
+            string _filename = ConfigurationManager.AppSettings["DefaultSource"].ToString();
+            CompileSource(new FileReader(_filename));
         }
         public Macro(string PathToTemplate)
         {
@@ -22,21 +25,26 @@ namespace CSCodeCompiler.Macros
         public void CompileSource(IReader reader)
         {
             _result.Append(reader.Read());
-        } 
-        public void Execute(List<IStrategy> strategyCollection)
+        }
+        public void Execute(IStrategy strategy)
         {
-            string result = "";
+            string result = "";       
+            result = strategy.Execute(_result.ToString());
+            _result.Clear();
+            _result.Append(result); 
+        }
+        public void Execute(List<IStrategy> strategyCollection)
+        { 
             foreach (var strategy in strategyCollection)
             {
-                result = strategy.Execute(_result.ToString());
-                _result.Clear();
-                _result.Append(result);
+                Execute(strategy); 
+                CompileDest(new TextConsole());
             } 
         }
         public void ExecuteAndView(List<IStrategy> strategyCollection)
         {
             this.Execute(strategyCollection); 
-            CompileDest(new TextConsole());
+            
         }
         public void CompileDest(IWriter writer)
         {

@@ -48,9 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Projects\Compile.cs" />
     <Compile Include="Strategies\Compilers\RepeaterCompile.cs" />
     <Compile Include="Strategies\Compilers\RegexCompile.cs" />
-    <Compile Include="Strategies\Compilers\HashCompile.cs" />
+    <Compile Include="Strategies\Compilers\KeyValCompile.cs" />
     <Compile Include="Strategies\Compilers\IndexCompile.cs" />
     <Compile Include="Macros\Macro.cs" />
     <Compile Include="Macros\IMacro.cs" />

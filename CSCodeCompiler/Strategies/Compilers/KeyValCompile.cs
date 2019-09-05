@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CSCodeCompiler.Strategies
 {
-    public class HashCompile : IStrategy
+    public class KeyValCompile : IStrategy
     {
         private Dictionary<string, string> _dict;
-        public HashCompile(Dictionary<string, string> Dict)
+        public KeyValCompile(Dictionary<string, string> Dict)
         {
             _dict = Dict;
         }

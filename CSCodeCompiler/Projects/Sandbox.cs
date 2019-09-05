@@ -16,7 +16,7 @@ namespace CSCodeCompiler.Projects
     { 
         public static void Run(string[] args)
         { 
-            Macro macro = new Macro(@"c:\temp\input.txt");
+            Macro macro = new Macro( );
             List<IStrategy> strat = new List<IStrategy>();
             strat.Add(new RepeaterCompile(500, 505));
             macro.ExecuteAndView(strat);  

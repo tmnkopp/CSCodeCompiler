@@ -11,6 +11,7 @@ namespace CSCodeCompiler.Strategies
     {
         private int _from = 0;
         private int _to = 1;
+
         public RepeaterCompile(int From, int To)
         {
             _from = From;

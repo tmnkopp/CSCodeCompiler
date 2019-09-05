@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace CSCodeCompiler.IO
     }
     public class FileReader : IReader
     {
-        private string _filename;
+        private string _filename = ConfigurationManager.AppSettings["DefaultSource"].ToString();
         public FileReader(string filename)
         {
             _filename = filename;   
