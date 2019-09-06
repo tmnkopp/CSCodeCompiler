@@ -52,6 +52,7 @@
     <Compile Include="Macros\PauseMacro.cs" />
     <Compile Include="Projects\Compile.cs" />
     <Compile Include="Reflection\Program.cs" />
+    <Compile Include="Reflection\Reflection.cs" />
     <Compile Include="Strategies\Compilers\RepeaterCompile.cs" />
     <Compile Include="Strategies\Compilers\RegexCompile.cs" />
     <Compile Include="Strategies\Compilers\KeyValCompile.cs" />

@@ -22,7 +22,7 @@ namespace CSCodeCompiler.Macros
             Cache.Write(result);
             Cache.CacheEdit();
             Console.WriteLine("{0}",strategy.GetType()); 
-            Console.ReadLine();
+            Console.ReadKey();
         }
         public void Execute(List<IStrategy> strategyCollection)
         {
