@@ -13,14 +13,19 @@ namespace CSCodeCompiler
     { 
         static void Main(string[] args)
         {
+
+            CSCodeCompiler.Projects.Reflection.Run(new string[] { });
+
+            return;
             PauseMacro macro = new PauseMacro();
             List<IStrategy> strat = new List<IStrategy>();
-            strat.Add(new RepeaterCompile(500, 505));
-            strat.Add(new IndexCompile(1000, 0, "[index2]"));
+            strat.Add(new RepeaterCompile(1, 10));
+            //strat.Add(new IndexCompile(1, 0, "[SORTORDER]")); 
+            //strat.Add(new IndexCompile(1000, 0, "[indexpk]"));
             macro.Execute(strat);
             macro.Commit();
 
-            //CSCodeCompiler.Projects.Compile.Run(new string[] { });
+            //
             //string line = Console.ReadLine();
         }
     } 

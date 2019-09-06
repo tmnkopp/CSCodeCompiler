@@ -17,14 +17,26 @@ namespace CSCodeCompiler.Projects
     {
         public static void Run(string[] args)
         {
-            Type type = Type.GetType("CSCodeCompiler.Data.DBUtils");
-            ConstructorInfo ctor = type.GetConstructor(Type.EmptyTypes);
-            object obj = ctor.Invoke(new object[] { });
+            
+        //ARgum
 
-            MethodInfo methodInfo = type.GetMethod("DBLookup");
-            object val = methodInfo.Invoke(obj, new object[] { " SELECT CODE + '\n' From fsma_QuestionTypes " });
+            Type type = Type.GetType("CSCodeCompiler.Strategies.IndexCompile");
+            ConstructorInfo ctor = type.GetConstructor(new[] { typeof(int), typeof(int), typeof(string) });
+            object obj = ctor.Invoke(new object[] { 1, 10, "[index]"});
 
-            Console.WriteLine("{0}", val);
+             Macro macro = new Macro();
+            List<IStrategy> strat = new List<IStrategy>();
+            strat.Add((IStrategy)obj);
+            //strat.Add(new IndexCompile(1, 0, "[SORTORDER]")); 
+            //strat.Add(new IndexCompile(1000, 0, "[indexpk]"));
+            macro.Execute(strat);
+            macro.Commit();
+
+
+            //MethodInfo methodInfo = type.GetMethod("DBLookup");
+            //object val = methodInfo.Invoke(obj, new object[] { " SELECT CODE + '\n' From fsma_QuestionTypes " });
+
+            //Console.WriteLine("{0}", val);
         }
     }
 }
