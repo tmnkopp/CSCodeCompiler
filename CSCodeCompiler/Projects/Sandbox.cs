@@ -1,5 +1,4 @@
-﻿using CSCodeCompiler.Strategies;
-using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Strategies; 
 using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
@@ -15,11 +14,13 @@ namespace CSCodeCompiler.Projects
     class Sandbox
     { 
         public static void Run(string[] args)
-        { 
-            Macro macro = new Macro( );
+        {
+            PauseMacro macro = new PauseMacro( );
             List<IStrategy> strat = new List<IStrategy>();
             strat.Add(new RepeaterCompile(500, 505));
-            macro.ExecuteAndView(strat);  
+            strat.Add(new IndexCompile(1000, 0, "[index2]"));
+            macro.Execute(strat);
+            macro.Commit();
         } 
     } 
 }

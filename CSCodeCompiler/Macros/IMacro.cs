@@ -10,8 +10,8 @@ namespace CSCodeCompiler.Macros
 {
     public interface IMacro
     { 
-        void CompileSource(IReader reader);
+        void Prepare();
         void Execute(List<IStrategy> strategyCollection); 
-        void CompileDest(IWriter writer);
+        void Commit();
     } 
 }

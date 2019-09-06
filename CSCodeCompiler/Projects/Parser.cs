@@ -20,7 +20,8 @@ namespace CSCodeCompiler.Projects
             Macro macro = new Macro();
             List<IStrategy> strat = new List<IStrategy>();
             strat.Add(new CustomParse());
-            macro.ExecuteAndView(strat);
+            macro.Execute(strat);
+            macro.Commit();
         } 
     } 
 }

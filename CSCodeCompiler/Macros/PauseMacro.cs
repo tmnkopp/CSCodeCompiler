@@ -10,33 +10,42 @@ using System.Configuration;
 
 namespace CSCodeCompiler.Macros
 { 
-    public class Macro : IMacro
+    public class PauseMacro : IMacro
     {
         private StringBuilder _result = new StringBuilder();
-        public Macro()
-        { 
+        public PauseMacro()
+        {
             Prepare();
-        } 
+        }
         public void Prepare()
-        { 
-            IReader reader = new FileReader();
+        {
+            string _filename = ConfigurationManager.AppSettings["DefaultSource"].ToString();
+            IReader reader = new FileReader(_filename);
             _result.Append(reader.Read());
         }
+        public void Prepare(IReader reader)
+        { 
+            _result.Append(reader.Read());
+        } 
         public void Execute(IStrategy strategy)
         {
-            string result = "";       
-            result = strategy.Execute(_result.ToString());
+            string result = strategy.Execute(_result.ToString());
             _result.Clear();
-            _result.Append(result); 
+            _result.Append(result);
+            Cache.Write(_result.ToString());
+            Cache.CacheEdit();
+            Console.Write("tk:>" + strategy.GetType().ToString());
+            Console.ReadLine();
+            _result.Clear();
+            _result.Append(Cache.Read()); 
         }
         public void Execute(List<IStrategy> strategyCollection)
         { 
             foreach (var strategy in strategyCollection)
             {
-                Execute(strategy); 
-            }
-            Cache.Write(_result.ToString());
-        }
+                Execute(strategy);   
+            } 
+        } 
         public void Commit()
         {
             IWriter writer = new FileWriter();

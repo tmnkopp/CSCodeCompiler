@@ -14,8 +14,20 @@ namespace CSCodeCompiler
         static void Main(string[] args)
         {
 
-             CSCodeCompiler.Projects.Compile.Run(new string[] { });
-        } 
+            CSCodeCompiler.Projects.Reflection.Run(new string[] { });
+
+            return;
+            PauseMacro macro = new PauseMacro();
+            List<IStrategy> strat = new List<IStrategy>();
+            strat.Add(new RepeaterCompile(1, 10));
+            //strat.Add(new IndexCompile(1, 0, "[SORTORDER]")); 
+            //strat.Add(new IndexCompile(1000, 0, "[indexpk]"));
+            macro.Execute(strat);
+            macro.Commit();
+
+            //
+            //string line = Console.ReadLine();
+        }
     } 
 }
 //git rm --cached CSCodeCompiler/App.config
