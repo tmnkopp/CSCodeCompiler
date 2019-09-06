@@ -17,7 +17,7 @@ namespace CSCodeCompiler.Projects
             strat.Add(new RepeaterCompile(1, 10)); 
             strat.Add(new IndexCompile (10, 0, "[index1]"));
             strat.Add(new IndexCompile (1000,1005, "[index2]"));  
-            macro.ExecuteAndView(strat);
+            macro.Execute(strat);
         }
 
     }

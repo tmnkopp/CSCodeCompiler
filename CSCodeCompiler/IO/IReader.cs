@@ -15,6 +15,9 @@ namespace CSCodeCompiler.IO
     public class FileReader : IReader
     {
         private string _filename = ConfigurationManager.AppSettings["DefaultSource"].ToString();
+        public FileReader( )
+        { 
+        }
         public FileReader(string filename)
         {
             _filename = filename;   
@@ -25,6 +28,6 @@ namespace CSCodeCompiler.IO
             {
                 return tr.ReadToEnd();
             }
-        }
-    }
+        } 
+    } 
 }
