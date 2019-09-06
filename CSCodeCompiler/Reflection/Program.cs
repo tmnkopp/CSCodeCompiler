@@ -17,8 +17,20 @@ namespace CSCodeCompiler.Projects
     {
         public static void Run(string[] args)
         {
+            
+            Type type = Type.GetType("CSCodeCompiler.Strategies.IndexCompile");
 
-            //ARgum
+            var ctors = type.GetConstructors();
+            // assuming class A has only one constructor
+            var ctor = ctors[0];
+            foreach (var param in ctor.GetParameters())
+            {
+                Console.WriteLine(string.Format(
+                    "Param {0} is named {1} and is of type {2}",
+                    param.Position, param.Name, param.ParameterType));
+            }
+            return;
+
 
             Type[] ctorSignature = Reflection.GetCtorArgs(new object[] {1,2,"hello"});
             return;
