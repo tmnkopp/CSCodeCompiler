@@ -12,6 +12,7 @@ namespace CSCodeCompiler.Strategies
         private int _seed = 0;
         private int _reset = 1;
         private string _indexName = "[index]";
+
         public IndexCompile(int Seed, int Reset, string IndexName)
         {
             _seed = Seed-1;
@@ -33,7 +34,7 @@ namespace CSCodeCompiler.Strategies
         private int ReSetter(int index) {
             if (_reset <= 1)
                 return index;
-            return ((index ) % _reset) + (_seed+1);
+            return (_seed+1) + ((index) % _reset);
         }
     }
 }

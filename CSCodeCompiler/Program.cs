@@ -12,25 +12,14 @@ namespace CSCodeCompiler
     class Program
     { 
         static void Main(string[] args)
-        {
-
-            CSCodeCompiler.Projects.Reflection.Run(new string[] { });
-
-            return;
-            PauseMacro macro = new PauseMacro();
-            List<IStrategy> strat = new List<IStrategy>();
-            strat.Add(new RepeaterCompile(1, 10));
-            //strat.Add(new IndexCompile(1, 0, "[SORTORDER]")); 
-            //strat.Add(new IndexCompile(1000, 0, "[indexpk]"));
-            macro.Execute(strat);
-            macro.Commit();
-
-            //
-            //string line = Console.ReadLine();
+        { 
+            CSCodeCompiler.Projects.Compile.Run(new string[] { }); 
         }
     } 
 }
-//git rm --cached CSCodeCompiler/App.config
+//   git rm --cached CSCodeCompiler/App.config
+//   git rm --cached CSCodeCompiler\App.config
+//   git rm --cached App.config
 
 
 

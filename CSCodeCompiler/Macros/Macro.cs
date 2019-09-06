@@ -11,36 +11,38 @@ using System.Configuration;
 namespace CSCodeCompiler.Macros
 { 
     public class Macro : IMacro
-    {
-        private StringBuilder _result = new StringBuilder();
+    { 
         public Macro()
         { 
             Prepare();
         } 
+        public void Execute(IStrategy strategy)
+        {
+            string result = strategy.Execute(Cache.Read());
+            Cache.Write(result);
+            Cache.CacheEdit();
+            Console.WriteLine("{0}",strategy.GetType()); 
+            Console.ReadLine();
+        }
+        public void Execute(List<IStrategy> strategyCollection)
+        {
+            int index = 0;
+            foreach (var strategy in strategyCollection)
+            {
+                Execute(strategy);
+                FileWriter f = new FileWriter($"c:\\temp\\_{index++.ToString()}${strategy.ToString()}.tk");
+                f.Write(Cache.Read());
+            }
+        }
         public void Prepare()
         { 
             IReader reader = new FileReader();
-            _result.Append(reader.Read());
-        }
-        public void Execute(IStrategy strategy)
-        {
-            string result = "";       
-            result = strategy.Execute(_result.ToString());
-            _result.Clear();
-            _result.Append(result); 
-        }
-        public void Execute(List<IStrategy> strategyCollection)
-        { 
-            foreach (var strategy in strategyCollection)
-            {
-                Execute(strategy); 
-            }
-            Cache.Write(_result.ToString());
+            Cache.Write(reader.Read());
         }
         public void Commit()
         {
             IWriter writer = new FileWriter();
-            writer.Write(_result.ToString());
+            writer.Write(Cache.Read());
         }
     }
 }
