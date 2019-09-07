@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -28,6 +29,11 @@ namespace CSCodeCompiler.Data
             }
             return result.ToString();
         }
+        public Dictionary<string, string> DictLookup(string key, string value, string table) {
+            string result = KeyValueLookup(  key,   value,   table);
+            return JsonConvert
+                .DeserializeObject<Dictionary<string, string>>("{" + result.ToString() + "}");
+        }
         public string KeyValueLookup(string key, string value, string table) {
             var con = ConfigurationManager.ConnectionStrings["Cyberscope123"].ToString();
             StringBuilder result = new StringBuilder();
@@ -45,7 +51,8 @@ namespace CSCodeCompiler.Data
                     myConnection.Close();
                 }
             }
-            return "{" + result.ToString() + "}";
+            return result.ToString();
+       
         }
     }
 }
