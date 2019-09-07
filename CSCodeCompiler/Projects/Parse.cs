@@ -13,7 +13,7 @@ using CSCodeCompiler.Strategies.Parsers;
 
 namespace CSCodeCompiler.Projects
 {
-    class Parser
+    class Parse
     { 
         public static void Run(string[] args)
         {
