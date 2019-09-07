@@ -33,8 +33,7 @@ namespace CSCodeCompiler.Strategies
                     }
                 } 
             }
-            return result.ToString();
-			        
+            return result.ToString(); 
         }
     }
 }

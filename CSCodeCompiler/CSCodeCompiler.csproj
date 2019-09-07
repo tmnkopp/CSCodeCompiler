@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Dictionaries.cs" />
     <Compile Include="IO\Cache.cs" />
     <Compile Include="Projects\Compile.cs" />
     <Compile Include="Reflection\Program.cs" />
     <Compile Include="Reflection\Reflection.cs" />
+    <Compile Include="Strategies\Compilers\PathCompile.cs" />
     <Compile Include="Strategies\Compilers\RepeaterCompile.cs" />
     <Compile Include="Strategies\Compilers\RegexCompile.cs" />
     <Compile Include="Strategies\Compilers\KeyValCompile.cs" />
@@ -60,7 +62,6 @@
     <Compile Include="Macros\IMacro.cs" />
     <Compile Include="Strategies\Compilers\ICompileFormula.cs" />
     <Compile Include="Strategies\Compilers\CustomCompile.cs" />
-    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Data\DBUtils.cs" />
     <Compile Include="IO\IReader.cs" />
     <Compile Include="IO\IWriter.cs" />

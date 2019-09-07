@@ -12,6 +12,7 @@ namespace CSCodeCompiler.Reflection
         {
 
         }
+
         //public Get CTOR Values From Instance
         //public Get CTOR Param Info from Type
         //Type Invoker

@@ -27,7 +27,7 @@ namespace CSCodeCompiler.Strategies
             foreach (var line in lines) {
                 if (line.Contains(_indexName))
                     index++; 
-                result.AppendFormat("{0}\n",line.Replace(""+ _indexName + "", ReSetter(index).ToString()));
+                result.AppendFormat("{0}\n", line.Replace(""+ _indexName + "", ReSetter(index).ToString()));
             }
             return result.ToString();
         }
@@ -35,6 +35,10 @@ namespace CSCodeCompiler.Strategies
             if (_reset <= 1)
                 return index;
             return (_seed+1) + ((index) % _reset);
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}-{_seed.ToString()}-{_reset.ToString()}-{_indexName.ToString()}";
         }
     }
 }

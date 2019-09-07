@@ -30,7 +30,7 @@ namespace CSCodeCompiler.Macros
             foreach (var strategy in strategyCollection)
             {
                 Execute(strategy);
-                FileWriter f = new FileWriter($"c:\\temp\\_{index++.ToString()}${strategy.ToString()}.tk");
+                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${strategy.ToString().Replace("CSCodeCompiler.Strategies.","")}.tk");
                 f.Write(Cache.Read());
             }
         }

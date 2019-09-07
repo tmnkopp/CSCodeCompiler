@@ -27,6 +27,10 @@ namespace CSCodeCompiler.Strategies
                 result.AppendFormat("{0}\n", compileme.Replace("[index]", index.ToString())); 
             } 
             return result.ToString();
-        } 
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}-{_from.ToString()}-{_to.ToString()}";
+        }
     }
 }

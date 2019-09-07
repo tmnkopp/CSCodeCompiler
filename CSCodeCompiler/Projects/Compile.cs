@@ -1,4 +1,5 @@
-﻿using CSCodeCompiler.Macros;
+﻿using CSCodeCompiler.Data;
+using CSCodeCompiler.Macros;
 using CSCodeCompiler.Strategies;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace CSCodeCompiler.Projects
         {
             Macro macro = new Macro();
             List<IStrategy> strat = new List<IStrategy>();
-            strat.Add(new RepeaterCompile(1, 5)); 
-            strat.Add(new IndexCompile (10, 0, "[index1]"));
-            strat.Add(new IndexCompile (1000,5, "[index2]"));
+            strat.Add(new PathCompile());  
             strat.Add(new RepeaterCompile(1, 5));
+            strat.Add(new IndexCompile(10, 0, "[index2]"));
+            strat.Add(new IndexCompile(10, 0, "[index1]"));
+            strat.Add(new KeyValCompile(Dictionaries.SysCodes()));
             macro.Execute(strat);
+            macro.Commit();
         }
 
     }
