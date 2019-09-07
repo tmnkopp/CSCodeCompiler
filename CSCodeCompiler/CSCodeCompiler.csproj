@@ -48,20 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Data\Dictionaries.cs" />
+    <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="IO\Cache.cs" />
     <Compile Include="Projects\Compile.cs" />
     <Compile Include="Reflection\Program.cs" />
-    <Compile Include="Reflection\Reflection.cs" />
-    <Compile Include="Strategies\Compilers\PathCompile.cs" />
-    <Compile Include="Strategies\Compilers\RepeaterCompile.cs" />
-    <Compile Include="Strategies\Compilers\RegexCompile.cs" />
-    <Compile Include="Strategies\Compilers\KeyValCompile.cs" />
-    <Compile Include="Strategies\Compilers\IndexCompile.cs" />
+    <Compile Include="Reflection\Invoker.cs" />
+    <Compile Include="Procedures\Compilers\PathCompile.cs" />
+    <Compile Include="Procedures\Compilers\RepeaterCompile.cs" />
+    <Compile Include="Procedures\Compilers\RegexCompile.cs" />
+    <Compile Include="Procedures\Compilers\KeyValCompile.cs" />
+    <Compile Include="Procedures\Compilers\IndexCompile.cs" />
     <Compile Include="Macros\Macro.cs" />
     <Compile Include="Macros\IMacro.cs" />
-    <Compile Include="Strategies\Compilers\ICompileFormula.cs" />
-    <Compile Include="Strategies\Compilers\CustomCompile.cs" />
+    <Compile Include="Procedures\Compilers\IProcedure.cs" />
+    <Compile Include="Procedures\Compilers\CustomCompile.cs" />
     <Compile Include="Data\DBUtils.cs" />
     <Compile Include="IO\IReader.cs" />
     <Compile Include="IO\IWriter.cs" />
@@ -69,12 +71,12 @@
     <Compile Include="Projects\Parse.cs" />
     <Compile Include="Projects\DB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategies\Parsers\CustomParse.cs" />
+    <Compile Include="Procedures\Parsers\CustomParse.cs" />
+    <Compile Include="Reflection\TypeUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extentions\" />
     <Folder Include="Models\" />
-    <Folder Include="Strategies\Formatters\" />
+    <Folder Include="Procedures\Formatters\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

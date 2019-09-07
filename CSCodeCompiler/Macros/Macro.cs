@@ -3,46 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Procedures;
 using CSCodeCompiler.IO;
 using CSCodeCompiler.Macros;
 using System.Configuration;
 
 namespace CSCodeCompiler.Macros
 { 
-    public class Macro : IMacro
-    { 
-        public Macro()
-        { 
-            Prepare();
-        } 
-        public void Execute(IStrategy strategy)
+    public class Macro : BaseMacro, IMacro
+    {  
+        public override void Execute(IProcedure procedure)
         {
-            string result = strategy.Execute(Cache.Read());
+            string result = procedure.Execute(Cache.Read());
             Cache.Write(result);
             Cache.CacheEdit();
-            Console.WriteLine("{0}",strategy.GetType()); 
+            Console.WriteLine("{0}",procedure.GetType()); 
             Console.ReadKey();
-        }
-        public void Execute(List<IStrategy> strategyCollection)
-        {
-            int index = 0;
-            foreach (var strategy in strategyCollection)
-            {
-                Execute(strategy);
-                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${strategy.ToString().Replace("CSCodeCompiler.Strategies.","")}.tk");
-                f.Write(Cache.Read());
-            }
-        }
-        public void Prepare()
-        { 
-            IReader reader = new FileReader();
-            Cache.Write(reader.Read());
-        }
-        public void Commit()
-        {
-            IWriter writer = new FileWriter();
-            writer.Write(Cache.Read());
-        }
+        } 
     }
 }

@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.Strategies.Parsers
+namespace CSCodeCompiler.Procedures.Parsers
 {
-    public class CustomParse : IStrategy
+    public class CustomParse : IProcedure
     {
         public string Execute(string content)
         {

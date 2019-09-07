@@ -1,4 +1,4 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO; 
@@ -13,7 +13,7 @@ namespace CSCodeCompiler
     { 
         static void Main(string[] args)
         { 
-            CSCodeCompiler.Projects.Compile.Run(new string[] { }); 
+            CSCodeCompiler.Projects.DB.Run(new string[] { }); 
         }
     } 
 }

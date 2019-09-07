@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.Strategies
+namespace CSCodeCompiler.Procedures
 {
-    public class CustomCompile: IStrategy
+    public class CustomCompile: IProcedure
     {
         private string Customize(string result) {
             result = result.Replace("~", "");

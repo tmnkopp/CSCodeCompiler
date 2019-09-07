@@ -1,4 +1,4 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSCodeCompiler.Strategies.Parsers;
+using CSCodeCompiler.Procedures.Parsers;
 
 namespace CSCodeCompiler.Projects
 {
@@ -18,7 +18,7 @@ namespace CSCodeCompiler.Projects
         public static void Run(string[] args)
         {
             Macro macro = new Macro();
-            List<IStrategy> strat = new List<IStrategy>();
+            List<IProcedure> strat = new List<IProcedure>();
             strat.Add(new CustomParse());
             macro.Execute(strat);
             macro.Commit();

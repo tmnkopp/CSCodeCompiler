@@ -1,4 +1,4 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
@@ -8,17 +8,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using System.Configuration;
+using System.Data.SqlClient; 
 namespace CSCodeCompiler.Projects
 {
     class DB
     { 
         public static void Run(string[] args)
         {
-            DBUtils db = new DBUtils();
-            string data = db.DBLookup("select QT.CODE + '\n' from fsma_QuestionTypes QT ");
-            TextConsole tw = new TextConsole();
-            tw.Write(data);
+            string key = "code";
+            string value = "description";
+            string table = "fsma_QuestionTypes";
+   
         } 
     } 
 }

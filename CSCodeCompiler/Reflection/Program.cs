@@ -1,4 +1,4 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using CSCodeCompiler.Macros;
 using CSCodeCompiler.Data;
 using CSCodeCompiler.IO;
@@ -10,37 +10,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
- 
-
-
+using CSCodeCompiler.Reflection;
+using CSCodeCompiler.Extentions;
 namespace CSCodeCompiler.Projects
 {
     class Reflection
     {
         public static void Run(string[] args)
         {
- 
-            string cmdin = "IndexCompile -10 -0 -'[INDEX]'"; 
-            string[] commands = cmdin.Split(new string[] { " -" }, StringSplitOptions.None); 
-
-            Type type = Type.GetType($"CSCodeCompiler.Strategies.{commands[0]}"); 
-            ConstructorInfo ctor = type.GetConstructors()[0];
-            ParameterInfo[] PI = ctor.GetParameters();
-
-            object[] typeParams = new object[PI.Count()];
-            int i = 0;
-            foreach (ParameterInfo parm in PI)
+         
+            ProcedureInvoker PI = new ProcedureInvoker();  
+            Macro macro = new Macro();
+            List<IProcedure> strat = new List<IProcedure>();
+            List<string> Commands = new List<string>();
+            Commands.Add(".RepeaterCompile -1000 -1010");
+            Commands.Add(".IndexCompile -10 -0 -'[index1]'");
+            Commands.Add(".KeyValCompile -#SysCodes");
+            Commands.Add(".IndexCompile -10 -0 -'[index2]'");
+            foreach (string command in Commands)
             {
-                if (parm.ParameterType == typeof(int)) 
-                    typeParams[i] = Convert.ToInt32(commands[i + 1]);
-                 else  
-                    typeParams[i] = commands[i + 1]; 
-                i++;
+                object procedure = PI.Invoke(command);
+                strat.Add((IProcedure)procedure);
             }  
-
-            object obj = ctor.Invoke(typeParams);
-            Console.WriteLine("{0} ", obj.ToString()); 
-            Console.Read();
+            macro.Execute(strat);
+            macro.Commit();
 
 
         }  

@@ -1,13 +1,13 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.Strategies
+namespace CSCodeCompiler.Procedures
 {
-    public class IndexCompile : IStrategy
+    public class IndexCompile : IProcedure
     {
         private int _seed = 0;
         private int _reset = 1;

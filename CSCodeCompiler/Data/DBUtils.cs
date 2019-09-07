@@ -29,15 +29,10 @@ namespace CSCodeCompiler.Data
             }
             return result.ToString();
         }
-        public Dictionary<string, string> DictLookup(string key, string value, string table) {
-            string result = KeyValueLookup(  key,   value,   table);
-            return JsonConvert
-                .DeserializeObject<Dictionary<string, string>>("{" + result.ToString() + "}");
-        }
-        public string KeyValueLookup(string key, string value, string table) {
+        public Dictionary<string, string> KeyValueLookup(string key, string value, string table) {
             var con = ConfigurationManager.ConnectionStrings["Cyberscope123"].ToString();
-            StringBuilder result = new StringBuilder();
-            string sSql = $" SELECT  + STUFF((Select  ',\"' + CONVERT(nvarchar, {key}) + '\":\"' + CONVERT(nvarchar, {value}) + '\"' From {table} FOR XML PATH('')),1,1,'')  ";
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            string sSql = $" SELECT DISTINCT CONVERT(nvarchar, {key}) as ID, CONVERT(nvarchar, {value}) as VAL FROM {table}  ";
             using (SqlConnection myConnection = new SqlConnection(con))
             {
                 SqlCommand oCmd = new SqlCommand(sSql, myConnection);
@@ -46,13 +41,16 @@ namespace CSCodeCompiler.Data
                 {
                     while (oReader.Read())
                     {
-                        result.Append(oReader[0].ToString());   
+                        try  {
+                            dict.Add(oReader[0].ToString(), oReader[1].ToString());
+                        }   catch ()  {
+                            //just skip dupes
+                        } 
                     }
                     myConnection.Close();
                 }
             }
-            return result.ToString();
-       
+            return dict; 
         }
     }
 }

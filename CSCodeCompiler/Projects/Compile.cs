@@ -1,6 +1,6 @@
 ﻿using CSCodeCompiler.Data;
 using CSCodeCompiler.Macros;
-using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Procedures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace CSCodeCompiler.Projects
         public static void Run(string[] args)
         {
             Macro macro = new Macro();
-            List<IStrategy> strat = new List<IStrategy>();
+            List<IProcedure> strat = new List<IProcedure>();
             strat.Add(new PathCompile());  
             strat.Add(new RepeaterCompile(1, 5));
             strat.Add(new IndexCompile(10, 0, "[index2]"));

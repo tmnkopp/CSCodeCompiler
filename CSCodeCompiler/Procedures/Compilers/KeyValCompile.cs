@@ -1,13 +1,13 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace CSCodeCompiler.Strategies
+namespace CSCodeCompiler.Procedures
 {
-    public class KeyValCompile : IStrategy
+    public class KeyValCompile : IProcedure
     {
         private Dictionary<string, string> _dict;
         public KeyValCompile(Dictionary<string, string> Dict)

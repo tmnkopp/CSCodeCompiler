@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSCodeCompiler.Strategies
+namespace CSCodeCompiler.Procedures
 {
-    public interface IStrategy
+    public interface IProcedure
     {
          string Execute(string content);
     } 

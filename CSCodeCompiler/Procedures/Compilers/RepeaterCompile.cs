@@ -1,13 +1,13 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace CSCodeCompiler.Strategies
+namespace CSCodeCompiler.Procedures
 {
-    public class RepeaterCompile : IStrategy
+    public class RepeaterCompile : IProcedure
     {
         private int _from = 0;
         private int _to = 1;

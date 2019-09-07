@@ -1,4 +1,4 @@
-﻿using CSCodeCompiler.Strategies;
+﻿using CSCodeCompiler.Procedures;
 using CSCodeCompiler.IO;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,40 @@ namespace CSCodeCompiler.Macros
     public interface IMacro
     { 
         void Prepare();
-        void Execute(List<IStrategy> strategyCollection); 
+        void Execute(List<IProcedure> procedureCollection); 
         void Commit();
-    } 
+    }
+    public abstract class BaseMacro : IMacro
+    {
+        public BaseMacro()
+        {
+             Prepare();
+        }
+        public virtual void Commit()
+        {
+            IWriter writer = new FileWriter();
+            writer.Write(Cache.Read());
+        }
+
+        public virtual void Execute(IProcedure procedure)
+        {
+            string result = procedure.Execute(Cache.Read());
+            Cache.Write(result); 
+        }
+        public virtual void Execute(List<IProcedure> procedureCollection)
+        {
+            int index = 0;
+            foreach (var procedure in procedureCollection)
+            {
+                Execute(procedure);
+                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${procedure.ToString().Replace("CSCodeCompiler.Procedures.", "")}.tk");
+                f.Write(Cache.Read());
+            }
+        }
+        public virtual void Prepare()
+        {
+            IReader reader = new FileReader();
+            Cache.Write(reader.Read());
+        }
+    }
 }

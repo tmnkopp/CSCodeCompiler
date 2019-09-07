@@ -1,5 +1,5 @@
 ﻿using CSCodeCompiler.IO;
-using CSCodeCompiler.Strategies;
+using CSCodeCompiler.Procedures;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-namespace CSCodeCompiler.Strategies
+namespace CSCodeCompiler.Procedures
 {
-    public class PathCompile : IStrategy
+    public class PathCompile : IProcedure
     {  
         public string Execute(string compileme)
         {
