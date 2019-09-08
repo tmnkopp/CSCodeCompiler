@@ -16,16 +16,11 @@ namespace CSCodeCompiler.Macros
     }
     public abstract class BaseMacro : IMacro
     {
+        Dictionary<string, string> dictExecutionPlan = new Dictionary<string, string>();
         public BaseMacro()
         {
              Prepare();
-        }
-        public virtual void Commit()
-        {
-            IWriter writer = new FileWriter();
-            writer.Write(Cache.Read());
-        }
-
+        } 
         public virtual void Execute(IProcedure procedure)
         {
             string result = procedure.Execute(Cache.Read());
@@ -39,7 +34,23 @@ namespace CSCodeCompiler.Macros
                 Execute(procedure);
                 FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${procedure.ToString().Replace("CSCodeCompiler.Procedures.", "")}.tk");
                 f.Write(Cache.Read());
+                //dictExecutionPlan.Add(index++.ToString(), procedure.ToString());
             }
+        }
+        public virtual void Commit()
+        {
+            IWriter writer = new FileWriter();
+            writer.Write(Cache.Read());
+
+           //StringBuilder result = new StringBuilder();
+           //foreach (KeyValuePair<string, string> item in dictExecutionPlan)
+           //{
+           //    result.AppendFormat("\"{0}\":\"{1}\"", item.Key, item.Value.Replace("\"","\\\""));
+           //}
+           //writer = new FileWriter($"c:\\temp\\executionplan.json");
+           //writer.Write(result.ToString());
+            //
+
         }
         public virtual void Prepare()
         {

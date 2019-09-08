@@ -20,5 +20,9 @@ namespace CSCodeCompiler.Procedures
                 compileme = compileme.Replace(item.Key,item.Value);
             return compileme;        
         }
+        public override string ToString()
+        {
+            return $"{base.ToString()}-#{_dict.ToString()}";
+        }
     }
 }

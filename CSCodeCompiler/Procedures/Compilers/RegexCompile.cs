@@ -35,5 +35,9 @@ namespace CSCodeCompiler.Procedures
             }
             return result.ToString(); 
         }
+        public override string ToString()
+        {
+            return $"{base.ToString()}-#{_dict.ToString()}";
+        }
     }
 }
