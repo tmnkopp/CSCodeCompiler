@@ -17,8 +17,10 @@ namespace CSCodeCompiler.Projects
     { 
         public static void Run(string[] args)
         {
-            KeyValLookup kvl = new KeyValLookup("SELECT DISTINCT CODE, Description  FROM fsma_QuestionTypes");
-            Dictionary<string, string> QTdict = kvl.GetData();
+            KeyValDBReader dbreader = new KeyValDBReader("SELECT DISTINCT TOP 3  CODE, Description  FROM fsma_QuestionTypes");
+            dbreader.ExecuteRead();
+            Dictionary<string, string> dict = dbreader.Data;
+            dict.Add("~~","~~");
 
         } 
     } 

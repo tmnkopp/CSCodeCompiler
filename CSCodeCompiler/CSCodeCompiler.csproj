@@ -68,7 +68,6 @@
     <Compile Include="IO\IReader.cs" />
     <Compile Include="IO\IWriter.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Projects\Parse.cs" />
     <Compile Include="Projects\DB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Procedures\Parsers\CustomParse.cs" />

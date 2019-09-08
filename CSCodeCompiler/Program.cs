@@ -13,7 +13,7 @@ namespace CSCodeCompiler
     { 
         static void Main(string[] args)
         { 
-            CSCodeCompiler.Projects.DB.Run(new string[] { }); 
+            CSCodeCompiler.Projects.Compile.Run(new string[] { }); 
         }
     } 
 }

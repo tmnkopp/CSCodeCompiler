@@ -12,19 +12,13 @@ namespace CSCodeCompiler.IO
     public interface IWriter
     {
         void Write(string writeme);
-    }
-    public class ConsoleWriter : IWriter
-    {
-        public void Write(string writeme)
-        {
-            Console.Write(writeme);
-            Console.ReadLine();
-        }
-    }
-    public class FileWriter : IWriter
+    } 
+    public class FileWriter :  IWriter
     {
         private string _path = ConfigurationManager.AppSettings["CompileDest"].ToString();
-        public FileWriter( ) {
+        private string _basepath = ConfigurationManager.AppSettings["BasePath"].ToString();
+        public FileWriter()
+        {
         }
         public FileWriter(string Path)
         {
@@ -32,27 +26,8 @@ namespace CSCodeCompiler.IO
         }
         public void Write(string writeme)
         {
+            _path = String.Format("{0}", _path.Replace("~", _basepath));
             File.WriteAllText($"{_path}", writeme);
-        }
-    } 
-    public class TextConsole : IWriter
-    {
-        private string _path = ConfigurationManager.AppSettings["CompileDest"].ToString();
-        public TextConsole()
-        {
-        }
-        public TextConsole(string Path)
-        {
-            _path = Path;
-        }
-        public void Write(string writeme)
-        {
-            File.WriteAllText($"{_path}", writeme);
-            Process p = new Process();
-            p.StartInfo.FileName = ConfigurationManager.AppSettings["CodeViewer"].ToString();
-            p.StartInfo.Arguments = _path;
-            p.Start();
         }
     }
-
 }

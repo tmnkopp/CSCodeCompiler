@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CSCodeCompiler.Data
 { 
-    public abstract class DataLookup<T>
+    public abstract class DBReader<T>
     { 
         public SqlDataReader oReader { get; set; }
         public virtual void ExecuteSql(string sSql)
@@ -23,43 +23,59 @@ namespace CSCodeCompiler.Data
                 {
                     while (oReader.Read())
                     {
-                        LoadReader();
-                    }
+                        UnloadReader();
+                    }     
                     myConnection.Close();
                 }
             }
-        }
-        public abstract void LoadReader();
-        public abstract T GetData();
+        } 
+        public abstract void UnloadReader(); 
+        public virtual T Data  {get;set;}
+    }
+    public interface IDBReader {
+        void ExecuteRead();
     }
 
-    public class KeyValLookup : DataLookup<Dictionary<string, string>>
+    public class KeyValDBReader : DBReader<Dictionary<string, string>>, IDBReader
     {
-        private Dictionary<string, string> data = new Dictionary<string, string>();
-        public KeyValLookup(string sSql)
+        private string _sql;
+        private Dictionary<string, string> data = new Dictionary<string, string>();  
+        public override Dictionary<string, string> Data
         {
-            base.ExecuteSql(sSql);
-        }
-        public KeyValLookup(string key, string value, string table)
+            get { return data; }
+            set { data = value; }
+        } 
+        public KeyValDBReader(string sSql)
         {
-            base.ExecuteSql($" SELECT DISTINCT CONVERT(nvarchar, {key}) as ID, CONVERT(nvarchar, {value}) as VAL FROM {table}");
-        }
-        public KeyValLookup(string key, string value, string table, string where)
-        {
-            base.ExecuteSql($" SELECT DISTINCT CONVERT(nvarchar, {key}) as ID, CONVERT(nvarchar, {value}) as VAL FROM {table} WHERE 1=1 AND {where}");
-        }
-        public override void LoadReader()
-        {
-            try  {
-                data.Add(base.oReader[0].ToString(), base.oReader[1].ToString());
-            }   catch (Exception)  {
-                //just skip dupes
+            _sql = sSql;
+        }  
+        public override void UnloadReader()
+        { 
+            try
+            {
+                Data.Add(base.oReader[0].ToString(), base.oReader[1].ToString());
             }
-        }
-        public override Dictionary<string, string> GetData()
+            catch (Exception)//just skip dupes
+            {
+            } 
+        } 
+        public void ExecuteRead()
         {
-            return data;
+            base.ExecuteSql(_sql);
         }
     }
 }
+
+/*
  
+         public KeyValDBReader(string key, string value, string table)
+        {
+            base.ExecuteSql($" SELECT DISTINCT CONVERT(nvarchar, {key}) as ID, CONVERT(nvarchar, {value}) as VAL FROM {table}");
+        }
+        public KeyValDBReader(string key, string value, string table, string where)
+        {
+            base.ExecuteSql($" SELECT DISTINCT CONVERT(nvarchar, {key}) as ID, CONVERT(nvarchar, {value}) as VAL FROM {table} WHERE 1=1 AND {where}");
+        }
+ 
+ */
+
