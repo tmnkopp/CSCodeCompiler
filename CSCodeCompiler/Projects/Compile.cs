@@ -13,9 +13,9 @@ namespace CSCodeCompiler.Projects
     {
         public static void Run(string[] args)
         {
-            Macro macro = new Macro();
+            ParseMacro macro = new ParseMacro();
             List<IProcedure> strat = new List<IProcedure>();
-            strat.Add(new PathCompile());
+            strat.Add(new BlockExtractor("widgetZone3", "@await", "})"));
             strat.Add(new BlockExtractor("widgetZone2", "@await", "})")); 
             //strat.Add(new SqlKeyValCompile("[dir]data.sql")); 
             macro.Execute(strat);

@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace CSCodeCompiler.Macros
 { 
-    public class CacheEditMacro : BaseMacro, IMacro
+    public class CacheEditMacro : BaseMacro 
     {  
         public override void Execute(IProcedure procedure)
         {
@@ -21,7 +21,17 @@ namespace CSCodeCompiler.Macros
             Console.ReadKey();
         } 
     }
-    public class  Macro : BaseMacro, IMacro
+    public class ParseMacro : BaseMacro
+    {
+        StringBuilder result = new StringBuilder();
+        public override void Execute(IProcedure procedure)
+        {
+            FileReader r = new FileReader(AppSettings.CompileSource);
+            result.AppendFormat("{0}\n\n", procedure.Execute(r.Read()));
+            Cache.Write(result.ToString());
+        }
+    }
+    public class Macro : BaseMacro 
     {
         public override void Execute(IProcedure procedure)
         {

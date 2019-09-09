@@ -13,6 +13,8 @@ namespace CSCodeCompiler
         public static string ProcAssembly = ConfigurationManager.AppSettings["ProcAssembly"].ToString();
         public static string BasePath = ConfigurationManager.AppSettings["BasePath"].ToString();
         public static string Extention = ConfigurationManager.AppSettings["Extention"].ToString();
+        public static string CompileSource = ConfigurationManager.AppSettings["CompileSource"].ToString();
+        public static string CompileDest = ConfigurationManager.AppSettings["CompileDest"].ToString();
     }
     public static class Placeholders
     {
