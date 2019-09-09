@@ -25,8 +25,7 @@ namespace CSCodeCompiler.IO
             _path = Path;
         }
         public void Write(string writeme)
-        {
-            //_path = String.Format("{0}", _path.Replace(Placeholders.Dir, _basepath));
+        { 
             try
             { 
                 Console.WriteLine($"write {_path}");

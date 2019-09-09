@@ -16,13 +16,8 @@ namespace CSCodeCompiler.Projects
             Macro macro = new Macro();
             List<IProcedure> strat = new List<IProcedure>();
             strat.Add(new PathCompile());
-            strat.Add(new RepeaterCompile(1, 5));
-            strat.Add(new IndexCompile(10, 0, "[pk]"));
-            strat.Add(new SqlKeyValCompile("[dir]data.sql"));
-             
-           // 
-           // strat.Add(new IndexCompile(10, 0, "[index2]"));
-           // strat.Add(new IndexCompile(10, 0, "[index1]")); 
+            strat.Add(new BlockExtractor("widgetZone2", "@await", "})")); 
+            //strat.Add(new SqlKeyValCompile("[dir]data.sql")); 
             macro.Execute(strat);
             macro.Commit();
         }

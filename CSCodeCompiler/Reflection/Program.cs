@@ -24,8 +24,7 @@ namespace CSCodeCompiler.Projects
             List<IProcedure> strat = new List<IProcedure>();
             List<string> Commands = new List<string>();
             Commands.Add(".RepeaterCompile -1000 -1010");
-            Commands.Add(".IndexCompile -10 -0 -'[index1]'");
-            Commands.Add(".KeyValCompile -#SysCodes");
+            Commands.Add(".IndexCompile -10 -0 -'[index1]'"); 
             Commands.Add(".IndexCompile -10 -0 -'[index2]'");
             foreach (string command in Commands)
             {

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Diagnostics;
 
 namespace CSCodeCompiler.Macros
 {
@@ -45,8 +47,13 @@ namespace CSCodeCompiler.Macros
            StringBuilder result = new StringBuilder();
            foreach (KeyValuePair<string, string> item in dictExecutionPlan)
                 result.AppendFormat("${0}${1}\n", item.Key, item.Value.Replace("\"", "\\\""));
-            writer = new FileWriter($"c:\\temp\\executionplan.config");
-            writer.Write(result.ToString()); 
+            writer = new FileWriter($"c:\\temp\\executionplan.txt");
+            writer.Write(result.ToString());
+
+            Process p = new Process();
+            p.StartInfo.FileName = ConfigurationManager.AppSettings["CodeViewer"].ToString();
+            p.StartInfo.Arguments = ConfigurationManager.AppSettings["CompileDest"].ToString();
+            p.Start();
 
         }
         public virtual void Prepare()

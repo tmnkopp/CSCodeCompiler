@@ -26,9 +26,7 @@ namespace CSCodeCompiler.Macros
         public override void Execute(IProcedure procedure)
         {
             string result = procedure.Execute(Cache.Read());
-            Cache.Write(result); 
-            Console.WriteLine("{0}", procedure.GetType());
-            Console.ReadKey();
+            Cache.Write(result);  
         }
     }
 }

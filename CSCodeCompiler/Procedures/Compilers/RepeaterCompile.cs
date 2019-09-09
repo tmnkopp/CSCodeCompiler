@@ -24,7 +24,7 @@ namespace CSCodeCompiler.Procedures
             StringBuilder result = new StringBuilder(); 
             for (int index = _from; index <= _to; index++)
             {
-                result.AppendFormat("{0}\n", compileme.Replace("[index]", index.ToString())); 
+                result.AppendFormat("{0}\n", compileme); 
             } 
             return result.ToString();
         }
