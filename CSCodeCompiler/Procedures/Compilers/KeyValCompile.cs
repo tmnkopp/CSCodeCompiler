@@ -12,7 +12,7 @@ namespace CSCodeCompiler.Procedures
     public abstract class KeyValCompile : IProcedure
     { 
         public Dictionary<string, string> Dict { get; set; }
-        public string Execute(string compileme)
+        public virtual string Execute(string compileme)
         {
             foreach (var item in Dict)
                 compileme = compileme.Replace(item.Key,item.Value);
@@ -24,25 +24,22 @@ namespace CSCodeCompiler.Procedures
         }
     }
     public class SqlKeyValCompile : KeyValCompile, IProcedure  {
-        private string _sqlFileParam = "";
+        private string _sqlFileParam = ""; 
+        public Dictionary<string, string> Data { get { return base.Dict; }   } 
         public SqlKeyValCompile(string sqlFile)
-        {
-            _sqlFileParam = sqlFile;
+        { 
             IReader r = new FileReader(sqlFile);
             KeyValDBReader dbreader = new KeyValDBReader(r.Read()); 
             dbreader.ExecuteRead(); 
             base.Dict = dbreader.Data;
         }
+        public override string Execute(string compile)
+        {
+            return base.Execute(compile);
+        }
         public override string ToString()
         {
             return $"{AppSettings.ProcAssembly}.SqlKeyValCompile -{_sqlFileParam.ToString()}";
         }
-    }
-    public class DictCompile : KeyValCompile, IProcedure
-    { 
-        public DictCompile(Dictionary<string, string> Dict)
-        {
-            base.Dict = Dict;
-        } 
-    }
+    } 
 }

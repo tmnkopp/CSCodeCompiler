@@ -34,7 +34,7 @@ namespace CSCodeCompiler.Macros
             foreach (var procedure in procedureCollection)
             {
                 Execute(procedure);
-                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${procedure.ToString().Replace("CSCodeCompiler.Procedures.", "")}.{AppSettings.Extention}");
+                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${procedure.ToString().Replace(AppSettings.ProcAssembly, "")}.{AppSettings.Extention}");
                 f.Write(Cache.Read());
                 dictExecutionPlan.Add(index.ToString(), procedure.ToString());
             }

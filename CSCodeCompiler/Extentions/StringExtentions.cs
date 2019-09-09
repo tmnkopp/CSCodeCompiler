@@ -15,5 +15,11 @@ namespace CSCodeCompiler.Extentions
                 stringParam = stringParam.Replace(ch.ToString(),""); 
             return stringParam;
         }
+        public static string ReverseString(this string input)
+        {
+            char[] array = input.ToCharArray();
+            Array.Reverse(array);
+            return new String(array);
+        }
     }
 }
