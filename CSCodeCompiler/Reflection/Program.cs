@@ -20,7 +20,7 @@ namespace CSCodeCompiler.Projects
         {
          
             ProcedureInvoker PI = new ProcedureInvoker();  
-            Macro macro = new Macro();
+            CacheEditMacro macro = new CacheEditMacro();
             List<IProcedure> strat = new List<IProcedure>();
             List<string> Commands = new List<string>();
             Commands.Add(".RepeaterCompile -1000 -1010");

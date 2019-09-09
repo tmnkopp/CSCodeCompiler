@@ -38,7 +38,7 @@ namespace CSCodeCompiler.Procedures
         }
         public override string ToString()
         {
-            return $"{base.ToString()}-{_seed.ToString()}-{_reset.ToString()}-{_indexName.ToString()}";
+            return $"{base.ToString()} -{_seed.ToString()} -{_reset.ToString()} -{_indexName.ToString()}";
         }
     }
 }

@@ -30,7 +30,7 @@ namespace CSCodeCompiler.Procedures
         }
         public override string ToString()
         {
-            return $"{base.ToString()}-{_from.ToString()}-{_to.ToString()}";
+            return $"{base.ToString()} -{_from.ToString()} -{_to.ToString()}";
         }
     }
 }

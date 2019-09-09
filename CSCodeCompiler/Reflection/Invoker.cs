@@ -17,7 +17,7 @@ namespace CSCodeCompiler.Reflection
         {
             string[] commands = InvocationCommand.Split(new string[] { " -" }, StringSplitOptions.None);
 
-            Type type = Type.GetType($"{Constants.ProcAssembly}{commands[0]}");
+            Type type = Type.GetType($"{AppSettings.ProcAssembly}{commands[0]}");
             ConstructorInfo ctor = type.GetConstructors()[0];
             ParameterInfo[] PI = ctor.GetParameters(); 
             object[] typeParams = new object[PI.Count()];
@@ -30,21 +30,7 @@ namespace CSCodeCompiler.Reflection
                 }
                 else
                 {
-                    string stringParam = commands[i + 1];
-                    if (stringParam.StartsWith("#"))// we have a hash
-                    {
-                        stringParam = stringParam.Replace("#","");
-                        Type Tdict = Type.GetType($"CSCodeCompiler.Data.Dictionaries");
-                        MethodInfo MI = Tdict.GetMethod("SysCodes");
-                        Dictionary<string, string> 
-                            dict = (Dictionary<string, string>)MI.Invoke(null, new object[] { });
-                        typeParams[i] = dict; 
-                    }
-                    else // we have a simple string
-                    {
-                        typeParams[i] = stringParam.RemoveAsChars("'");
-                    }
-                    
+                    typeParams[i] = commands[i + 1].RemoveAsChars("'");   
                 }
                 i++;
             } 

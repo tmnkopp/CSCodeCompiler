@@ -26,8 +26,19 @@ namespace CSCodeCompiler.IO
         }
         public void Write(string writeme)
         {
-            _path = String.Format("{0}", _path.Replace("~", _basepath));
-            File.WriteAllText($"{_path}", writeme);
+            //_path = String.Format("{0}", _path.Replace(Placeholders.Dir, _basepath));
+            try
+            { 
+                Console.WriteLine($"write {_path}");
+                File.WriteAllText($"{_path}", writeme);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"\n\nbad path {_path}\n\n");
+                throw new InvalidProgramException();
+                
+            }
+            
         }
     }
 }

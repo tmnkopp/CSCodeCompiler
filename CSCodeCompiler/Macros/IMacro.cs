@@ -32,9 +32,9 @@ namespace CSCodeCompiler.Macros
             foreach (var procedure in procedureCollection)
             {
                 Execute(procedure);
-                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${procedure.ToString().Replace("CSCodeCompiler.Procedures.", "")}.tk");
+                FileWriter f = new FileWriter($"c:\\temp\\${index++.ToString()}${procedure.ToString().Replace("CSCodeCompiler.Procedures.", "")}.{AppSettings.Extention}");
                 f.Write(Cache.Read());
-                //dictExecutionPlan.Add(index++.ToString(), procedure.ToString());
+                dictExecutionPlan.Add(index.ToString(), procedure.ToString());
             }
         }
         public virtual void Commit()
@@ -42,14 +42,11 @@ namespace CSCodeCompiler.Macros
             IWriter writer = new FileWriter();
             writer.Write(Cache.Read());
 
-           //StringBuilder result = new StringBuilder();
-           //foreach (KeyValuePair<string, string> item in dictExecutionPlan)
-           //{
-           //    result.AppendFormat("\"{0}\":\"{1}\"", item.Key, item.Value.Replace("\"","\\\""));
-           //}
-           //writer = new FileWriter($"c:\\temp\\executionplan.json");
-           //writer.Write(result.ToString());
-            //
+           StringBuilder result = new StringBuilder();
+           foreach (KeyValuePair<string, string> item in dictExecutionPlan)
+                result.AppendFormat("${0}${1}\n", item.Key, item.Value.Replace("\"", "\\\""));
+            writer = new FileWriter($"c:\\temp\\executionplan.config");
+            writer.Write(result.ToString()); 
 
         }
         public virtual void Prepare()

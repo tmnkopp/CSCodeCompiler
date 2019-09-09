@@ -25,7 +25,7 @@ namespace CSCodeCompiler.IO
         }
         public string Read()
         {
-            _filename = String.Format("{0}", _filename.Replace("~", _basepath));
+            _filename = String.Format("{0}", _filename.Replace(Placeholders.Dir, _basepath));
             using (TextReader tr = File.OpenText(_filename))
             {
                 return tr.ReadToEnd();

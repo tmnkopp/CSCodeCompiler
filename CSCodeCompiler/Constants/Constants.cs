@@ -8,9 +8,16 @@ using System.Threading.Tasks;
 
 namespace CSCodeCompiler 
 {
-    public static class Constants
-    { 
+    public static class AppSettings
+    {
         public static string ProcAssembly = ConfigurationManager.AppSettings["ProcAssembly"].ToString();
-
+        public static string BasePath = ConfigurationManager.AppSettings["BasePath"].ToString();
+        public static string Extention = ConfigurationManager.AppSettings["Extention"].ToString();
+    }
+    public static class Placeholders
+    {
+        public static string Dir = "[dir]";
+        public static string Index = "[index]";
+        public static string eXT = "[ext]";
     }
 }
