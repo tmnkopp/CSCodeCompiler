@@ -29,7 +29,7 @@ namespace CSCodeCompiler.Extentions
             } while (input.Contains(" ")); 
             return input;
         }
-        public static string RemoveWhiteAndBreaks(this string input, string ReplaceWith)
+        public static string RemoveWhiteAndBreaks(this string input)
         {
             do
             {

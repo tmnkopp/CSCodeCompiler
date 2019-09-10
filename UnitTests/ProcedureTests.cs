@@ -21,10 +21,10 @@ namespace UnitTests
         [TestMethod]
         public void KeyValDBReaderNotNull()
         {
-            SqlKeyValCompile KVCompile = new SqlKeyValCompile("[dir]data.sql");
+            SqlKeyValCompile KVCompile = new SqlKeyValCompile("[dir]unittest.sql");
             //Dictionary<string, string> dict = KVCompile.Data;
-            string actual = KVCompile.Execute("[HW]");
-            string expected = "HELLO WORLD";
+            string actual = KVCompile.Execute("[UNITTEST]");
+            string expected = "passed";
             Assert.AreEqual(expected, actual);
         } 
     }
