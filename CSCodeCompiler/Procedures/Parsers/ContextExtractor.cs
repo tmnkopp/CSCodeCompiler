@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using CSCodeCompiler.Extentions;
 namespace CSCodeCompiler.Procedures
 {
-    public class ContextExtract : IProcedure
+    public class ContextExtractor : IProcedure
     {
         private string _extractTarget;
         private int _fromWhere;
         private int _toWhere;
-        public ContextExtract(string ExtractTarget, int FromWhere, int ToWhere)
+        public ContextExtractor(string ExtractTarget, int FromWhere, int ToWhere)
         {
             _extractTarget = ExtractTarget;
             _fromWhere = FromWhere;

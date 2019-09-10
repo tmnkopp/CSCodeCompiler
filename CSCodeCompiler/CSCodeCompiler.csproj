@@ -51,7 +51,7 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="IO\Cache.cs" />
-    <Compile Include="Procedures\Parsers\ContextExtract.cs" />
+    <Compile Include="Procedures\Parsers\ContextExtractor.cs" />
     <Compile Include="Procedures\Parsers\Extractor.cs" />
     <Compile Include="Projects\Compile.cs" />
     <Compile Include="Reflection\Program.cs" />
