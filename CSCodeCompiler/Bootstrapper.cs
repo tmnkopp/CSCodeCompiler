@@ -11,7 +11,7 @@ namespace CSCodeCompiler
     {
         public static void Run()
         {
-            string[] filenames = new string[] { "_cache", "_input", "_output", "_compile", "_compiled", "_parse", "_parsed" };
+            string[] filenames = new string[] {"_cache","_input","_output","_compile","_compiled","_parse","_parsed" };
 
             foreach (string  filename in filenames)
             {
