@@ -24,7 +24,8 @@ namespace CSCodeCompiler
                 file.Delete();
             foreach (var file in DI.GetFiles("+*"))
                 file.Delete();
-
+            //DI.Exists()
+            //DI.CreateSubdirectory();
 
         }
     }
