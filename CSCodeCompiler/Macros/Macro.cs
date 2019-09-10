@@ -26,7 +26,7 @@ namespace CSCodeCompiler.Macros
         StringBuilder results = new StringBuilder();
         public override void Execute(IProcedure procedure)
         {
-            FileReader r = new FileReader(AppSettings.CompileSource);
+            FileReader r = new FileReader(AppSettings.ParseSource);
             string result = procedure.Execute(r.Read());
             results.AppendFormat("{0}\n\n", result);
             FileWriter w = new FileWriter($"{AppSettings.BasePath}\\+{procedure.ToString()}.txt");

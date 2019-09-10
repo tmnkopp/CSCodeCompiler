@@ -49,12 +49,6 @@ namespace CSCodeCompiler.Macros
                 result.AppendFormat("${0}${1}\n", item.Key, item.Value.Replace("\"", "\\\""));
             writer = new FileWriter($"c:\\temp\\executionplan.txt");
             writer.Write(result.ToString());
-
-            Process p = new Process();
-            p.StartInfo.FileName = ConfigurationManager.AppSettings["CodeViewer"].ToString();
-            p.StartInfo.Arguments = ConfigurationManager.AppSettings["CompileDest"].ToString();
-            p.Start();
-
         }
         public virtual void Prepare()
         {

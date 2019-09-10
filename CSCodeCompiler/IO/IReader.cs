@@ -14,7 +14,7 @@ namespace CSCodeCompiler.IO
     }
     public class FileReader : IReader
     {
-        private string _filename = ConfigurationManager.AppSettings["CompileSource"].ToString();
+        private string _filename = ConfigurationManager.AppSettings["FileIn"].ToString();
         private string _basepath = ConfigurationManager.AppSettings["BasePath"].ToString();
         public FileReader( )
         { 

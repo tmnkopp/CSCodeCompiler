@@ -21,5 +21,22 @@ namespace CSCodeCompiler.Extentions
             Array.Reverse(array);
             return new String(array);
         }
+        public static string ReplaceWhitespace(this string input, string ReplaceWith)
+        {
+            do
+            {
+                input = input.Replace(" ", ReplaceWith);
+            } while (input.Contains(" ")); 
+            return input;
+        }
+        public static string RemoveWhiteAndBreaks(this string input, string ReplaceWith)
+        {
+            do
+            {
+                input = input.Replace(" ", "");
+            } while (input.Contains(" "));
+            input = input.Replace("\n", "").Replace("\r", "");
+            return input;
+        }
     }
 }

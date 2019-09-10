@@ -26,6 +26,7 @@ namespace CSCodeCompiler.Procedures
     public class SqlKeyValCompile : KeyValCompile, IProcedure  {
         private string _sqlFileParam = ""; 
         public Dictionary<string, string> Data { get { return base.Dict; }   } 
+
         public SqlKeyValCompile(string sqlFile)
         { 
             IReader r = new FileReader(sqlFile);

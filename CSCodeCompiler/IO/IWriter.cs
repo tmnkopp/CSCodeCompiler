@@ -15,7 +15,7 @@ namespace CSCodeCompiler.IO
     } 
     public class FileWriter :  IWriter
     {
-        private string _path = ConfigurationManager.AppSettings["CompileDest"].ToString();
+        private string _path = ConfigurationManager.AppSettings["FileOut"].ToString();
         private string _basepath = ConfigurationManager.AppSettings["BasePath"].ToString();
         public FileWriter()
         {
