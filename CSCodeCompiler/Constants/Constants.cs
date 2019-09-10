@@ -24,6 +24,6 @@ namespace CSCodeCompiler
     {
         public static string Dir = "[dir]";
         public static string Index = "[index]";
-        public static string eXT = "[ext]";
+        public static string EXT = "[ext]";
     }
 }

@@ -26,11 +26,11 @@ namespace CSCodeCompiler.Projects
             parse.Commit();
 
 
-            CacheEditMacro cachemac = new CacheEditMacro();
-            strat = new List<IProcedure>();
-            strat.Add(new PathCompile());
-            cachemac.Execute(strat);
-            cachemac.Commit();
+            //  CacheEditMacro cachemac = new CacheEditMacro();
+            //  strat = new List<IProcedure>();
+            //  strat.Add(new PathCompile());
+            //  cachemac.Execute(strat);
+            //  cachemac.Commit();
 
             //   ParseMacro macro = new ParseMacro();
             //   List<IProcedure> strat = new List<IProcedure>();

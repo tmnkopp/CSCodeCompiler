@@ -6,20 +6,20 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Reflection;
+using System.IO;
 
 namespace CSCodeCompiler
 {
     class Program
-    { 
+    {
         static void Main(string[] args)
-        { 
-            CSCodeCompiler.Projects.Compile.Run(new string[] { }); 
-        }
+        {
+            CSCodeCompiler.Bootstrapper.Run();
+            //CSCodeCompiler.Projects.Compile.Run(new string[] { });
+        }  
     } 
 }
-//   git rm --cached CSCodeCompiler/App.config
-//   git rm --cached CSCodeCompiler\App.config
-//   git rm --cached App.config
+ 
 
 
 

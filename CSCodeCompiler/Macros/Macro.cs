@@ -28,8 +28,10 @@ namespace CSCodeCompiler.Macros
         {
             FileReader r = new FileReader(AppSettings.ParseSource);
             string result = procedure.Execute(r.Read());
+
             results.AppendFormat("{0}\n\n", result);
-            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\+{procedure.ToString()}.txt");
+            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\+{procedure.ToString()}{AppSettings.Extention}");
+
             w.Write(result);
             Cache.Write(results.ToString());
         }

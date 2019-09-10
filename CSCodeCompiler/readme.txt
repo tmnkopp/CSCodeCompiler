@@ -15,5 +15,4 @@
     
     <add key="Assembly" value="CSCodeCompiler"/>
     <add key="ProcAssembly" value="CSCodeCompiler.Procedures"/>
-    <add key="Extention" value="txt"/>
-    
+    <add key="Extention" value=".txt"/>
