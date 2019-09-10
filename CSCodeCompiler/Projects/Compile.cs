@@ -17,15 +17,13 @@ namespace CSCodeCompiler.Projects
         {
             // ProcedureInvoker PI = new ProcedureInvoker(); 
             ParseMacro parse = new ParseMacro();
-            List < IProcedure > strat = new List<IProcedure>();
-            //ParseMacro parse = new ParseMacro();
-            //List<IProcedure> strat = new List<IProcedure>();
-            //strat.Add(new BlockExtractor("1", "/~", "~/") { ID = "1" });
-            //strat.Add(new BlockExtractor("2", "/~", "~/") { ID = "2" });
-            //strat.Add(new BlockExtractor("3", "/~", "~/") { ID = "3" });
-            //strat.Add(new BlockExtractor("4", "/~", "~/") { ID = "4" });
-            //parse.Execute(strat);
-            //parse.Commit();
+            List < IProcedure > strat = new List<IProcedure>(); 
+            strat.Add(new BlockExtractor("1", "/~", "~/") { ID = "1" });
+            strat.Add(new BlockExtractor("2", "/~", "~/") { ID = "2" });
+            strat.Add(new BlockExtractor("3", "/~", "~/") { ID = "3" });
+            strat.Add(new BlockExtractor("4", "/~", "~/") { ID = "4" });
+            parse.Execute(strat);
+            parse.Commit();
 
 
             CacheEditMacro cachemac = new CacheEditMacro();

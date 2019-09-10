@@ -29,7 +29,7 @@ namespace CSCodeCompiler.Macros
             FileReader r = new FileReader(AppSettings.CompileSource);
             string result = procedure.Execute(r.Read());
             results.AppendFormat("{0}\n\n", result);
-            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\${procedure.ToString()}.txt");
+            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\+{procedure.ToString()}.txt");
             w.Write(result);
             Cache.Write(results.ToString());
         }
