@@ -23,12 +23,15 @@ namespace CSCodeCompiler.Macros
     }
     public class ParseMacro : BaseMacro
     {
-        StringBuilder result = new StringBuilder();
+        StringBuilder results = new StringBuilder();
         public override void Execute(IProcedure procedure)
         {
             FileReader r = new FileReader(AppSettings.CompileSource);
-            result.AppendFormat("{0}\n\n", procedure.Execute(r.Read()));
-            Cache.Write(result.ToString());
+            string result = procedure.Execute(r.Read());
+            results.AppendFormat("{0}\n\n", result);
+            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\${procedure.ToString()}.txt");
+            w.Write(result);
+            Cache.Write(results.ToString());
         }
     }
     public class Macro : BaseMacro 

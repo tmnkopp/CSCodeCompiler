@@ -20,17 +20,17 @@ namespace CSCodeCompiler.Projects
         {
          
             ProcedureInvoker PI = new ProcedureInvoker();  
-            CacheEditMacro macro = new CacheEditMacro();
+            ParseMacro macro = new ParseMacro();
             List<IProcedure> strat = new List<IProcedure>();
-            List<string> Commands = new List<string>();
-            Commands.Add(".RepeaterCompile -1000 -1010");
-            Commands.Add(".IndexCompile -10 -0 -'[index1]'"); 
-            Commands.Add(".IndexCompile -10 -0 -'[index2]'");
-            foreach (string command in Commands)
-            {
-                object procedure = PI.Invoke(command);
-                strat.Add((IProcedure)procedure);
-            }  
+            strat.Add(new BlockExtractor("1","/~","~/"));
+            //List<string> Commands = new List<string>();
+            //Commands.Add(".BlockExtractor -'1' -'/~' -'~/'");
+            //
+            //foreach (string command in Commands)
+            //{
+            //    object procedure = PI.Invoke(command);
+            //    strat.Add((IProcedure)procedure);
+            //}  
             macro.Execute(strat);
             macro.Commit();
 

@@ -2,6 +2,7 @@
 using CSCodeCompiler.IO;
 using CSCodeCompiler.Macros;
 using CSCodeCompiler.Procedures;
+using CSCodeCompiler.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +15,22 @@ namespace CSCodeCompiler.Projects
     {
         public static void Run(string[] args)
         {
-            FileReader r = new FileReader(); 
-            BlockExtractor extractor = new BlockExtractor("PK_Question=", "<!-- 13a -->", "<!-- GLOSSARY -->");
-            string extraction = extractor.Execute(r.Read());
-            FileWriter w = new FileWriter();
-            w.Write(extraction);
+            //
+            ProcedureInvoker PI = new ProcedureInvoker();
+            ParseMacro macro = new ParseMacro();
+            List<IProcedure> strat = new List<IProcedure>();
+            strat.Add(new BlockExtractor("1", "/~", "~/") { ID = "1" });
+            strat.Add(new BlockExtractor("2", "/~", "~/") { ID = "2" });
+            strat.Add(new BlockExtractor("3", "/~", "~/") { ID = "3" });
+            strat.Add(new BlockExtractor("4", "/~", "~/") { ID = "4" });
 
             //   ParseMacro macro = new ParseMacro();
             //   List<IProcedure> strat = new List<IProcedure>();
             //   strat.Add(new BlockExtractor("widgetZone3", "@await", "})"));
             //   strat.Add(new BlockExtractor("widgetZone2", "@await", "})")); 
             //   //strat.Add(new SqlKeyValCompile("[dir]data.sql")); 
-            //   macro.Execute(strat);
-            //   macro.Commit();
+            macro.Execute(strat);
+            macro.Commit();
         }
 
     }

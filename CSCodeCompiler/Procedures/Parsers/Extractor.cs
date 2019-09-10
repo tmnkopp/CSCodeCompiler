@@ -11,7 +11,18 @@ namespace CSCodeCompiler.Procedures
     {
         private string _extractTarget;
         private string _fromWhere;
-        private string _toWhere; 
+        private string _toWhere;
+        private string _id;
+        public string ID
+        {
+            get {
+                if (string.IsNullOrEmpty(_id))
+                    _id = this.GetHashCode().ToString();
+                return _id; 
+            }
+            set { _id = value; }
+        }
+
         public BlockExtractor( string ExtractTarget, string FromWhere, string ToWhere)
         {
             _extractTarget= ExtractTarget;
@@ -35,6 +46,10 @@ namespace CSCodeCompiler.Procedures
                 }
             } 
             return result.ToString();
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()} -{ID.ToString()}";
         }
     }
 }
