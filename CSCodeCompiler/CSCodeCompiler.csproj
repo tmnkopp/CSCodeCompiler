@@ -52,6 +52,7 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="IO\Cache.cs" />
+    <Compile Include="Procedures\Parsers\JiraDescriptionParse.cs" />
     <Compile Include="Procedures\Verifiers\MustHaveVerifier.cs" />
     <Compile Include="Procedures\Parsers\ContextExtractor.cs" />
     <Compile Include="Procedures\Parsers\Extractor.cs" />

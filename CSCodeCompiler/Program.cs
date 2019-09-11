@@ -16,6 +16,13 @@ namespace CSCodeCompiler
         {
             CSCodeCompiler.Bootstrapper.Run();
             //CSCodeCompiler.Projects.Compile.Run(new string[] { });
+
+            ParseMacro parse = new ParseMacro();
+            List<IProcedure> strat = new List<IProcedure>(); 
+            strat.Add(new JiraDescriptionParse() {});
+            parse.Execute(strat);
+            parse.Commit();
+
         }  
     } 
 }
