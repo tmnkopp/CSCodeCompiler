@@ -22,7 +22,7 @@ namespace CSCodeCompiler
             DirectoryInfo DI = new DirectoryInfo(AppSettings.BasePath);
             foreach (var file in DI.GetFiles("$*"))
                 file.Delete();
-            foreach (var file in DI.GetFiles("+*"))
+            foreach (var file in DI.GetFiles("_parsed_*"))
                 file.Delete();
             //DI.Exists()
             //DI.CreateSubdirectory();

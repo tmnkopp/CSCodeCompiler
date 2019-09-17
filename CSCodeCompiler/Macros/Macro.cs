@@ -9,7 +9,15 @@ using CSCodeCompiler.Macros;
 using System.Configuration;
 
 namespace CSCodeCompiler.Macros
-{ 
+{
+    public class Macro : BaseMacro
+    {
+        public override void Execute(IProcedure procedure)
+        {
+            string result = procedure.Execute(Cache.Read());
+            Cache.Write(result);
+        }
+    }
     public class CacheEditMacro : BaseMacro 
     {  
         public override void Execute(IProcedure procedure)
@@ -30,18 +38,29 @@ namespace CSCodeCompiler.Macros
             string result = procedure.Execute(r.Read());
 
             results.AppendFormat("{0}\n\n", result);
-            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\+{procedure.ToString()}{AppSettings.Extention}");
+            FileWriter w = new FileWriter($"{AppSettings.BasePath}\\_parsed_{procedure.ToString()}{AppSettings.Extention}");
 
-            w.Write(result);
+            w.Write(result); 
             Cache.Write(results.ToString());
         }
-    }
-    public class Macro : BaseMacro 
-    {
-        public override void Execute(IProcedure procedure)
+        public override void Commit()
         {
-            string result = procedure.Execute(Cache.Read());
-            Cache.Write(result);  
+            IWriter writer = new FileWriter(AppSettings.ParseDest);
+            writer.Write(Cache.Read()); 
         }
     }
+    public class CompileMacro : BaseMacro
+    {
+        public override void Prepare()
+        {
+            IReader reader = new FileReader(AppSettings.CompileSource);
+            Cache.Write(reader.Read());
+        }
+        public override void Commit()
+        {
+            IWriter writer = new FileWriter(AppSettings.CompileDest);
+            writer.Write(Cache.Read());
+        }
+    }
+
 }

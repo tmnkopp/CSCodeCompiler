@@ -49,7 +49,7 @@ namespace CSCodeCompiler.Procedures
         }
         public override string ToString()
         {
-            return $"{base.ToString()} -{ID.ToString()}";
+            return $"{base.ToString().Replace(AppSettings.ProcAssembly, "")}-{ID.ToString()}";
         }
     }
 }

@@ -52,11 +52,11 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="IO\Cache.cs" />
+    <Compile Include="Macros\BaseMacro.cs" />
     <Compile Include="Procedures\Parsers\JiraDescriptionParse.cs" />
     <Compile Include="Procedures\Verifiers\MustHaveVerifier.cs" />
     <Compile Include="Procedures\Parsers\ContextExtractor.cs" />
-    <Compile Include="Procedures\Parsers\Extractor.cs" />
-    <Compile Include="Projects\Compile.cs" />
+    <Compile Include="Procedures\Parsers\BlockExtractor.cs" />
     <Compile Include="Reflection\Program.cs" />
     <Compile Include="Reflection\Invoker.cs" />
     <Compile Include="Procedures\Compilers\PathCompile.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Procedures\Parsers\CustomParse.cs" />
     <Compile Include="Reflection\TypeUtils.cs" />
+    <Compile Include="Projects\DirSearcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Procedures\Formatters\" />

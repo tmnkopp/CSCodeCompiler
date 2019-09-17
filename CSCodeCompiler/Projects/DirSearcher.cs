@@ -8,34 +8,34 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using CSCodeCompiler.Reflection;
+using System.Text;
 
 namespace CSCodeCompiler
 {
-     class Program
+    public class DirSearcher
     {
-        static void Main(string[] args)
+        public static void Run(string[] args)
         {
-            CSCodeCompiler.Bootstrapper.Run();
-            CSCodeCompiler.DirSearcher.Run(new string[] { });
-
-            //ProcedureInvoker PI = new ProcedureInvoker();
-            //List<IProcedure> procs = new List<IProcedure>();
-            //List<string> commands = new List<string>();
-            //
-            //procs.Clear();
-            //commands.Clear();
-            //ParseMacro macro = new ParseMacro(); 
-            //commands.Add(".BlockExtractor -'ISSUE:' -'<description>' -'</description>'");
-            ////commands.Add(".BlockExtractor -'2' -'/#' -'#/'");
-            //foreach (string command in commands)
-            //{
-            //   object procedure = PI.Invoke(command);
-            //    procs.Add((IProcedure)procedure);
-            //}  
-            //macro.Execute(procs); 
-            //macro.Commit();
-
-
+            //HVAIn
+            string dbroot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\";
+            string coderoot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope";
+            string root = coderoot;
+            string find = "Agency Contacts";
+            StringBuilder sb = new StringBuilder();
+            FileReader r = new FileReader();
+            DirectoryInfo DI = new DirectoryInfo($"{root}");
+            foreach (var file in DI.GetFiles("cq_*.sql", SearchOption.AllDirectories)) {
+                r = new FileReader(file.FullName);
+                string content = r.Read(); 
+                if (content.Contains(find))
+                { 
+                    IProcedure proc = new ContextExtractor(find, 155, 155);
+                    string result = proc.Execute(content);
+                    sb.AppendFormat("\n{2}\n{0}\n{1}\n", file.FullName, result, new String('!', 125)); 
+                }  
+            }
+            Cache.Write(sb.ToString());
+            Cache.CacheEdit();
         }  
     } 
 }

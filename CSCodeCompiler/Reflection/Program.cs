@@ -22,7 +22,8 @@ namespace CSCodeCompiler.Projects
             ProcedureInvoker PI = new ProcedureInvoker();  
             ParseMacro macro = new ParseMacro();
             List<IProcedure> strat = new List<IProcedure>();
-            strat.Add(new BlockExtractor("1","/~","~/"));
+            strat.Add(new BlockExtractor("aut", "/#","#/"));
+            strat.Add(new BlockExtractor("commodi", "/#", "#/"));
             //List<string> Commands = new List<string>();
             //Commands.Add(".BlockExtractor -'1' -'/~' -'~/'");
             //
