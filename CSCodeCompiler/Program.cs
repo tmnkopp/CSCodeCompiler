@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using CSCodeCompiler.Reflection;
-
+using HtmlAgilityPack;
 namespace CSCodeCompiler
 {
      class Program
@@ -16,30 +16,37 @@ namespace CSCodeCompiler
         static void Main(string[] args)
         {
             CSCodeCompiler.Bootstrapper.Run();
-            CSCodeCompiler.DirSearcher.Run(new string[] { });
+            //CSCodeCompiler.DirSearcher.Run(new string[] { });
+            CSCodeCompiler.JiraTicketService.Run(new string[] { });
 
-            //ProcedureInvoker PI = new ProcedureInvoker();
-            //List<IProcedure> procs = new List<IProcedure>();
-            //List<string> commands = new List<string>();
-            //
-            //procs.Clear();
-            //commands.Clear();
-            //ParseMacro macro = new ParseMacro(); 
-            //commands.Add(".BlockExtractor -'ISSUE:' -'<description>' -'</description>'");
-            ////commands.Add(".BlockExtractor -'2' -'/#' -'#/'");
-            //foreach (string command in commands)
-            //{
-            //   object procedure = PI.Invoke(command);
-            //    procs.Add((IProcedure)procedure);
-            //}  
-            //macro.Execute(procs); 
-            //macro.Commit();
-
-
+            return; 
         }  
     } 
 }
 
+
+//Macro macro = new Macro();
+//List<IProcedure> proc = new List<IProcedure>();
+//proc.Add();
+//macro.Execute(proc);
+//macro.Commit();
+
+//ProcedureInvoker PI = new ProcedureInvoker();
+//List<IProcedure> procs = new List<IProcedure>();
+//List<string> commands = new List<string>();
+//
+//procs.Clear();
+//commands.Clear();
+//ParseMacro macro = new ParseMacro(); 
+//commands.Add(".BlockExtractor -'ISSUE:' -'<description>' -'</description>'");
+////commands.Add(".BlockExtractor -'2' -'/#' -'#/'");
+//foreach (string command in commands)
+//{
+//   object procedure = PI.Invoke(command);
+//    procs.Add((IProcedure)procedure);
+//}  
+//macro.Execute(procs); 
+//macro.Commit();
 /*
  
             ParseMacro parse = new ParseMacro();

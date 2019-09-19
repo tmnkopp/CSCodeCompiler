@@ -13,30 +13,41 @@ using System.Text;
 namespace CSCodeCompiler
 {
     public class DirSearcher
-    {
+    { 
         public static void Run(string[] args)
-        {
-            //HVAIn
-            string dbroot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\";
-            string coderoot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope";
-            string root = coderoot;
-            string find = "Agency Contacts";
-            StringBuilder sb = new StringBuilder();
+        { 
+            StringBuilder sb = new StringBuilder(); 
+            string dbroot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\SPROCS";
+            string coderoot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope";  
+            string find = " HVAOut ";
+            Cache.Write("");
+            CodeLookup(dbroot, find, "*.sql");
+            // CodeLookup(coderoot, find, "*.vb");
+            Cache.CacheEdit();
+   
+        }
+        private static void CodeLookup(string root, string find, string pattern) {
+
             FileReader r = new FileReader();
             DirectoryInfo DI = new DirectoryInfo($"{root}");
-            foreach (var file in DI.GetFiles("cq_*.sql", SearchOption.AllDirectories)) {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Cache.Read());
+            foreach (var file in DI.GetFiles(pattern, SearchOption.AllDirectories))
+            {
                 r = new FileReader(file.FullName);
-                string content = r.Read(); 
+                string content = r.Read()
+                    .Replace("\t", "") 
+                    .Replace("  ", " ");
                 if (content.Contains(find))
-                { 
-                    IProcedure proc = new ContextExtractor(find, 155, 155);
+                {
+                    IProcedure proc = new ContextExtractor(find, 25, 200);
                     string result = proc.Execute(content);
-                    sb.AppendFormat("\n{2}\n{0}\n{1}\n", file.FullName, result, new String('!', 125)); 
-                }  
+                    sb.AppendFormat("{2}\n{0}\n{2}\n{1}\n", file.FullName, result, new String('#', 250));
+                    Console.WriteLine($"found: {file.FullName}");
+                }
             }
             Cache.Write(sb.ToString());
-            Cache.CacheEdit();
-        }  
+        }
     } 
 }
 

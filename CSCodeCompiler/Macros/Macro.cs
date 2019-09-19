@@ -39,8 +39,8 @@ namespace CSCodeCompiler.Macros
 
             results.AppendFormat("{0}\n\n", result);
             FileWriter w = new FileWriter($"{AppSettings.BasePath}\\_parsed_{procedure.ToString()}{AppSettings.Extention}");
-
             w.Write(result); 
+
             Cache.Write(results.ToString());
         }
         public override void Commit()

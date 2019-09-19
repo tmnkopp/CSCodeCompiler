@@ -13,9 +13,9 @@ namespace UnitTests
         public void ContextExtractReturnsExpectedResult()
         {
             string parseme = "1-2-3-4-5-6-7-8-9-01-2-3-4-5-6-7-8-9-0";
-            ContextExtractor extract = new ContextExtractor("4-5-6",2,2);
-            string expected = "3-4-5-6-7\n3-4-5-6-7\n";
+            ContextExtractor extract = new ContextExtractor("4-5-6",1,3);
             string actual = extract.Execute(parseme);
+            string expected = "-4-5-6-7-\n-4-5-6-7-\n"; 
             Assert.AreEqual(expected, actual); 
         }
         [TestMethod]

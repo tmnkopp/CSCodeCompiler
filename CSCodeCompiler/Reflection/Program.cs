@@ -22,16 +22,9 @@ namespace CSCodeCompiler.Projects
             ProcedureInvoker PI = new ProcedureInvoker();  
             ParseMacro macro = new ParseMacro();
             List<IProcedure> strat = new List<IProcedure>();
-            strat.Add(new BlockExtractor("aut", "/#","#/"));
-            strat.Add(new BlockExtractor("commodi", "/#", "#/"));
-            //List<string> Commands = new List<string>();
-            //Commands.Add(".BlockExtractor -'1' -'/~' -'~/'");
-            //
-            //foreach (string command in Commands)
-            //{
-            //    object procedure = PI.Invoke(command);
-            //    strat.Add((IProcedure)procedure);
-            //}  
+            strat.Add(new BlockExtractor("1", "aut", "/#","#/"));
+            strat.Add(new BlockExtractor("1", "commodi", "/#", "#/"));
+        
             macro.Execute(strat);
             macro.Commit();
 

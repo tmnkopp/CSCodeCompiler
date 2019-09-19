@@ -38,5 +38,25 @@ namespace CSCodeCompiler.Extentions
             input = input.Replace("\n", "").Replace("\r", "");
             return input;
         }
+        public static string CleanHTML(this string input) {
+            string output = input;
+
+            string[] removables = new string[] { "\t", "\r", "\n" };
+            foreach (string removable in removables)
+                output = output.Replace(removable, "");
+
+            do
+            {
+                output = output.Replace("  ", " ");
+            } while (output.Contains("  "));
+
+            output = output.Replace("> <", "><");
+            string[] tags = new string[] { "p", "li", "b", "em", "strong" };
+            foreach (string tag in tags) {  
+                output = output.Replace($"<{tag}></{tag}>", ""); 
+            }
+            
+            return output; 
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace CSCodeCompiler.Procedures
                 string prefix = preFixes[i];
                 if (_fromWhere > prefix.Length)
                     _fromWhere = prefix.Length;
-                prefix = prefix.Substring(0, _toWhere);
+                prefix = prefix.Substring(0, _fromWhere);
                 preFixes[i] = prefix.ReverseString();
             }
             _extractTarget = _extractTarget.ReverseString();

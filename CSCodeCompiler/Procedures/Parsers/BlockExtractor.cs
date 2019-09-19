@@ -23,9 +23,10 @@ namespace CSCodeCompiler.Procedures
             set { _id = value; }
         }
 
-        public BlockExtractor( string ExtractTarget, string FromWhere, string ToWhere)
+        public BlockExtractor(string ParseID, string ExtractTarget, string FromWhere, string ToWhere)
         {
-            _extractTarget= ExtractTarget;
+            _id = ParseID;
+            _extractTarget = ExtractTarget;
             _fromWhere = FromWhere;
             _toWhere = ToWhere; 
         }
