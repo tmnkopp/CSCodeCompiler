@@ -16,13 +16,12 @@ namespace CSCodeCompiler
     { 
         public static void Run(string[] args)
         { 
-            StringBuilder sb = new StringBuilder(); 
-            string dbroot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\SPROCS";
-            string coderoot = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope";  
-            string find = " HVAOut ";
-            Cache.Write("");
-            CodeLookup(dbroot, find, "*.sql");
-            // CodeLookup(coderoot, find, "*.vb");
+            StringBuilder sb = new StringBuilder();
+            // string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\sprocs";
+            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope\"; 
+            string find = ":CBPickList2";
+            Cache.Write(""); 
+            CodeLookup(root, find, "*.aspx");
             Cache.CacheEdit();
    
         }
@@ -31,18 +30,25 @@ namespace CSCodeCompiler
             FileReader r = new FileReader();
             DirectoryInfo DI = new DirectoryInfo($"{root}");
             StringBuilder sb = new StringBuilder();
-            sb.Append(Cache.Read());
+            
+            sb.Append(Cache.Read()); 
             foreach (var file in DI.GetFiles(pattern, SearchOption.AllDirectories))
             {
                 r = new FileReader(file.FullName);
-                string content = r.Read()
-                    .Replace("\t", "") 
-                    .Replace("  ", " ");
+                string content = r.Read().Replace("\t", "").Replace("  ", " ");
                 if (content.Contains(find))
                 {
-                    IProcedure proc = new ContextExtractor(find, 25, 200);
-                    string result = proc.Execute(content);
-                    sb.AppendFormat("{2}\n{0}\n{2}\n{1}\n", file.FullName, result, new String('#', 250));
+                    IProcedure procContextTerse = new ContextExtractor(find, 0, 125); 
+                    IProcedure procContextVerbose = new ContextExtractor(find, 125, 450);
+                 
+                    sb.AppendFormat("{1}\n{0}\n{2}\n{4}\n{3}\n", 
+                        file.FullName,
+                        new String('#', 225),
+                        procContextTerse.Execute(content).Replace("\n"," "),
+                        procContextVerbose.Execute(content),
+                         new String('_', 225)
+
+                    );
                     Console.WriteLine($"found: {file.FullName}");
                 }
             }

@@ -58,5 +58,18 @@ namespace CSCodeCompiler.Extentions
             
             return output; 
         }
+        public static string RemoveFormattingHTML(this string input)
+        {
+            string output = input; 
+            output = output.Replace("> <", "><");
+            string[] tags = new string[] { "p", "li", "ol", "ul", "b", "em", "strong" };
+            foreach (string tag in tags)
+            {
+                output = output.Replace($"<{tag}>", "");
+                output = output.Replace($"</{tag}>", "");
+            }
+
+            return output;
+        }
     }
 }

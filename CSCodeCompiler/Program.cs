@@ -15,7 +15,11 @@ namespace CSCodeCompiler
     {
         static void Main(string[] args)
         {
-            CSCodeCompiler.Bootstrapper.Run();
+            //DateTime localDate = DateTime.Now;
+            //Console.Write($"  ...  {localDate.ToLongTimeString()} .. .  .");
+            //Console.Read();
+
+            //CSCodeCompiler.Bootstrapper.Run();
             //CSCodeCompiler.DirSearcher.Run(new string[] { });
             CSCodeCompiler.JiraTicketService.Run(new string[] { });
 

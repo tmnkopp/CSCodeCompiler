@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace CSCodeCompiler 
 {
-    public class JiraTicketService {
+    public class JiraTicketService
+    {
         public static void Run(string[] args)
         {
             DataCallTicketRepo repo = new DataCallTicketRepo();
@@ -25,9 +26,11 @@ namespace CSCodeCompiler
                     string idtext = metric.IDText;
                     string met = metric.MetricText;
                 }
-            } 
+            }
         }
     }
+    
+
     public class DataCallTicket
     {
         public string Key{ get; set; } 
@@ -43,6 +46,7 @@ namespace CSCodeCompiler
     {  
         public string IDText { get; set; }
         public string MetricText { get; set; }
+        public string MetricPickList { get; set; }
     }
     public class DataCallTicketRepo
     { 
@@ -52,13 +56,14 @@ namespace CSCodeCompiler
             get { return tickets; }
             set { tickets = value; }
         }
-        
+  
         public DataCallTicketRepo()
         { 
             Init(); 
         }
         private void Init()
         {
+            Regex rex;
             DirectoryInfo DI = new DirectoryInfo($"{AppSettings.BasePath}\\jira\\saop2019");
             foreach (var file in DI.GetFiles("*.xml", SearchOption.AllDirectories))
             {
@@ -72,18 +77,18 @@ namespace CSCodeCompiler
                 string desc = htmlDoc.DocumentNode.SelectSingleNode("//item/description").InnerHtml;
                 desc = WebUtility.HtmlDecode(desc);
                 desc = desc.CleanHTML();
-                htmlDoc.LoadHtml(desc);
-
+                 
+                htmlDoc.LoadHtml(desc); 
                 HtmlNodeCollection pnodes = htmlDoc.DocumentNode.SelectNodes("//p");
-                Regex rex;
+                
                 DataCallMetric metric = new DataCallMetric(); 
                 foreach (var pnode in pnodes)
-                {
+                { 
                     rex = new Regex(@"<p>.{0,2}Section");
                     if (rex.IsMatch(pnode.OuterHtml))
-                    {
+                    { 
                         ticket.Section = pnode.InnerHtml;
-                    }
+                    } 
 
                     if (metric.IDText == null)
                     {
@@ -92,18 +97,45 @@ namespace CSCodeCompiler
                         { 
                             metric.IDText = pnode.InnerHtml;
                         }
-                    } else {
+                    }
+                    if (metric.MetricText == null && metric.IDText != null)
+                    {
                         rex = new Regex(@"<p>.{15,500}</p>");
-                        if (rex.IsMatch(pnode.OuterHtml) && metric.MetricText == null)
+                        if (rex.IsMatch(pnode.OuterHtml))
                         {
                             metric.MetricText = pnode.InnerHtml;
-                            ticket.Metrics.Add(metric); 
+                            ticket.Metrics.Add(metric);
                             metric = new DataCallMetric();
                         }
                     }
+                    //if (metric.MetricPickList == null && metric.MetricText != null)
+                    //{
+                    //    rex = new Regex(@"ol>.{15,500}/ol>");
+                    //    if (rex.IsMatch(pnode.OuterHtml))
+                    //    {
+                    //        metric.MetricPickList = pnode.InnerHtml;
+                    //        ticket.Metrics.Add(metric);
+                    //        metric = new DataCallMetric();
+                    //    }
+                    //} 
                 }
+                //ticket.Metrics.Add(metric);
                 Tickets.Add(ticket); 
             } 
-        }
+        } 
     }
 }
+
+
+
+//inserting metric tags for readability 
+//int cnt = 1;
+//foreach (var match in Regex.Matches(desc, @"<p>\d{1,3}\w{1,2}\.")) {
+//    string metID = match.ToString();
+//    if (cnt > 1)
+//        desc = desc.Replace(metID, $"</metric><metric id=\"{cnt.ToString()}\">{metID}");
+//    else
+//        desc = desc.Replace(metID, $"<metric id=\"{cnt.ToString()}\">{metID}");
+//    cnt++;
+//}
+// -- inserting metric tags for readability 

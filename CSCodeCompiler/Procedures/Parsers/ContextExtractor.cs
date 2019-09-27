@@ -42,6 +42,7 @@ namespace CSCodeCompiler.Procedures
             }
             _extractTarget = _extractTarget.ReverseString();
             content = content.ReverseString();
+             
             for (int i = 1; i < preFixes.Length; i++)//skip prefix content index
             {
                 result.AppendFormat("{1}{0}{2}\n", _extractTarget, preFixes[i], postFixes[i]); 
