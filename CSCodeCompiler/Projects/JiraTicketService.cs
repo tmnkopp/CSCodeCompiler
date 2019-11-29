@@ -23,7 +23,7 @@ namespace CSCodeCompiler
                 foreach (var metric in ticket.Metrics)
                 {
                     string qgroup = ticket.Section;
-                    string idtext = metric.IDText;
+                    string idtext = metric.MetricID;
                     string met = metric.MetricText;
                 }
             }
@@ -31,23 +31,7 @@ namespace CSCodeCompiler
     }
     
 
-    public class DataCallTicket
-    {
-        public string Key{ get; set; } 
-        public string Section { get; set; } 
-        private List<DataCallMetric> metrics = new List<DataCallMetric>();
-        public List<DataCallMetric> Metrics
-        {
-            get { return metrics; }
-            set { metrics = value; }
-        }
-    }
-    public class DataCallMetric
-    {  
-        public string IDText { get; set; }
-        public string MetricText { get; set; }
-        public string MetricPickList { get; set; }
-    }
+
     public class DataCallTicketRepo
     { 
         private List<DataCallTicket> tickets = new List<DataCallTicket>();
@@ -64,78 +48,80 @@ namespace CSCodeCompiler
         private void Init()
         {
             Regex rex;
-            DirectoryInfo DI = new DirectoryInfo($"{AppSettings.BasePath}\\jira\\saop2019");
-            foreach (var file in DI.GetFiles("*.xml", SearchOption.AllDirectories))
+            DirectoryInfo DI = new DirectoryInfo($"{AppSettings.BasePath}\\jira\\!SAOP2019$DataCallProcessor\\_dest");
+            foreach (var file in DI.GetFiles("*.xml" ))
             {
                 HtmlDocument htmlDoc = new HtmlDocument();
                 FileReader r = new FileReader(file.FullName);
                 htmlDoc.LoadHtml(r.Read());
 
                 DataCallTicket ticket = new DataCallTicket();
-                ticket.Key = htmlDoc.DocumentNode.SelectSingleNode("//item/key").InnerHtml;  
-
-                string desc = htmlDoc.DocumentNode.SelectSingleNode("//item/description").InnerHtml;
-                desc = WebUtility.HtmlDecode(desc);
-                desc = desc.CleanHTML();
-                 
-                htmlDoc.LoadHtml(desc); 
-                HtmlNodeCollection pnodes = htmlDoc.DocumentNode.SelectNodes("//p");
+                ticket.Key = htmlDoc.DocumentNode.SelectSingleNode("//item/key").InnerHtml;
+                ticket.Section = htmlDoc.DocumentNode.SelectSingleNode("//item//qgroup").InnerHtml; 
                 
-                DataCallMetric metric = new DataCallMetric(); 
-                foreach (var pnode in pnodes)
+                HtmlNodeCollection metricNodes = htmlDoc.DocumentNode.SelectNodes("//metric");
+                DataCallMetric metric = new DataCallMetric();
+                foreach (var metricNode in metricNodes)
                 { 
-                    rex = new Regex(@"<p>.{0,2}Section");
-                    if (rex.IsMatch(pnode.OuterHtml))
-                    { 
-                        ticket.Section = pnode.InnerHtml;
-                    } 
-
-                    if (metric.IDText == null)
+                    metric.MetricID = metricNode.SelectSingleNode("id-text").InnerHtml;
+                    metric.MetricText = metricNode.SelectSingleNode("question-text").InnerHtml;
+ 
+                    HtmlNodeCollection picklistNodes = metricNode.SelectNodes("picklist/li");
+                    if (picklistNodes != null)
                     {
-                        rex = new Regex(@"\d{1,3}\w{1,2}\.");
-                        if (rex.IsMatch(pnode.OuterHtml))
-                        { 
-                            metric.IDText = pnode.InnerHtml;
-                        }
-                    }
-                    if (metric.MetricText == null && metric.IDText != null)
-                    {
-                        rex = new Regex(@"<p>.{15,500}</p>");
-                        if (rex.IsMatch(pnode.OuterHtml))
+                        metric.MetricPickList = new Picklist();
+                        foreach (HtmlNode picklistNode  in picklistNodes)
                         {
-                            metric.MetricText = pnode.InnerHtml;
-                            ticket.Metrics.Add(metric);
-                            metric = new DataCallMetric();
+                            metric.MetricPickList.PicklistItems.Add(new PicklistItem() { Text = picklistNode.InnerHtml });
+                            Console.WriteLine(picklistNode.InnerHtml); 
                         }
+                   
                     }
-                    //if (metric.MetricPickList == null && metric.MetricText != null)
-                    //{
-                    //    rex = new Regex(@"ol>.{15,500}/ol>");
-                    //    if (rex.IsMatch(pnode.OuterHtml))
-                    //    {
-                    //        metric.MetricPickList = pnode.InnerHtml;
-                    //        ticket.Metrics.Add(metric);
-                    //        metric = new DataCallMetric();
-                    //    }
-                    //} 
                 }
-                //ticket.Metrics.Add(metric);
+                ticket.Metrics.Add(metric);
                 Tickets.Add(ticket); 
             } 
         } 
+    }
+    public class DataCallTicket
+    {
+        public string Key { get; set; }
+        public string Section { get; set; }
+        private List<DataCallMetric> metrics = new List<DataCallMetric>();
+        public List<DataCallMetric> Metrics
+        {
+            get { return metrics; }
+            set { metrics = value; }
+        }
+    }
+    public class DataCallMetric
+    {
+        public string MetricID { get; set; }
+        public string MetricText { get; set; }
+        public Picklist MetricPickList { get; set; }
+    }
+    public class Picklist
+    {
+        public string PicklistID { get; set; }
+        public string MetricID { get; set; }
+        private List<PicklistItem> pickListItems = new List<PicklistItem>();
+        public List<PicklistItem> PicklistItems
+        {
+            get { return pickListItems; }
+            set { pickListItems = value; }
+        }
+    }
+    public class PicklistItem
+    {
+        public string PicklistItemID { get; set; }
+        public string Text { get; set; }
+    }
+    public class MetricControl
+    {
+        public string ControlType { get; set; } 
     }
 }
 
 
 
-//inserting metric tags for readability 
-//int cnt = 1;
-//foreach (var match in Regex.Matches(desc, @"<p>\d{1,3}\w{1,2}\.")) {
-//    string metID = match.ToString();
-//    if (cnt > 1)
-//        desc = desc.Replace(metID, $"</metric><metric id=\"{cnt.ToString()}\">{metID}");
-//    else
-//        desc = desc.Replace(metID, $"<metric id=\"{cnt.ToString()}\">{metID}");
-//    cnt++;
-//}
-// -- inserting metric tags for readability 
+

@@ -21,6 +21,12 @@ namespace CSCodeCompiler.IO
             FileWriter w = new FileWriter(_filename);
             w.Write(content);
         }
+        public static void Append(string content)
+        {
+            string _filename = ConfigurationManager.AppSettings["Cache"].ToString();
+            FileWriter w = new FileWriter(_filename);
+            w.Write(Cache.Read() + content);
+        }
         public static void CacheEdit() {
             Process p = new Process();
             p.StartInfo.FileName = ConfigurationManager.AppSettings["CodeViewer"].ToString();
