@@ -17,10 +17,10 @@ namespace CSCodeCompiler
         public static void Run(string[] args)
         { 
             StringBuilder sb = new StringBuilder();
-            // string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\archive\";
-             string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope\";
+            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\sprocs\";
+            // string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\";
             // string root = @"D:\dev\CyberBalance\trunk\projects"; 
-            string find = "Public Property";
+            string find = "RMAMetricsDisplay";
             Cache.Write(""); 
             CodeLookup(root, find, "*.*");
             Cache.CacheEdit();

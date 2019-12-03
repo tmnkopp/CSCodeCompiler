@@ -15,9 +15,7 @@ namespace CSCodeCompiler
     {
         static void Main(string[] args)
         {
-            //DateTime localDate = DateTime.Now;
-            //Console.Write($"  ...  {localDate.ToLongTimeString()} .. .  .");
-            //Console.Read();
+
             CSCodeCompiler.FFCIOCompiler.Run(new string[] { });
             // CSCodeCompiler.Bootstrapper.Run();
             // CSCodeCompiler.DirSearcher.Run(new string[] { });
