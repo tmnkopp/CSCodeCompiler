@@ -92,7 +92,7 @@
     <Compile Include="Procedures\Parsers\BlockExtractor.cs" />
     <Compile Include="Projects\FFCIOCompiler.cs" />
     <Compile Include="Projects\JiraTicketService.cs" />
-    <Compile Include="Projects\RMAFormCreator.cs" />
+    <Compile Include="Projects\DataTransUtil.cs" />
     <Compile Include="Reflection\Program.cs" />
     <Compile Include="Reflection\Invoker.cs" />
     <Compile Include="Procedures\Compilers\PathCompile.cs" />

@@ -17,10 +17,10 @@ namespace CSCodeCompiler
         public static void Run(string[] args)
         { 
             StringBuilder sb = new StringBuilder();
-            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\sprocs\";
+            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\archive\";
             // string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\";
             // string root = @"D:\dev\CyberBalance\trunk\projects"; 
-            string find = "RMAMetricsDisplay";
+            string find = "Appendix A provides a summary of the FISMA CAP Goal Metric";
             Cache.Write(""); 
             CodeLookup(root, find, "*.*");
             Cache.CacheEdit();

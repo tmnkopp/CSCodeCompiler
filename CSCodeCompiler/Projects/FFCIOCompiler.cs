@@ -13,73 +13,61 @@ namespace CSCodeCompiler
     { 
         public static void Run(string[] args)
         {
-            Cache.Write("");
-            //PreparePKEYSql();
-            ProcessFiles();
-            //Process_DB_Update();
+            Cache.Write(""); 
+            GenerateNewControlTemplate();
+            GenerateNewForms();
+        
         }
 
 
-        private static void ProcessFiles(){
-            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope\FismaForms\2019";
-            string ext = "";
+        private static void GenerateNewForms(){
+            string root = @"C:\temp\templates\CIO2020";
+            string dest = @"D:\dev\CyberScope\CS-7-19\CSwebdev\code\CyberScope\FismaForms\2020";
+            string content = "";
             DirectoryInfo DI = new DirectoryInfo($"{root}"); 
             
             foreach (var file in DI.GetFiles("2019_Q4_CIO_*", SearchOption.AllDirectories))
             { 
-                string content = new FileReader(file.FullName).Read().ToString();
+                content = new FileReader(file.FullName).Read().ToString(); 
+                content = new SqlKeyValCompile(@"C:\temp\CIOCompileKV.sql").Execute(content);
 
-                ext = new BlockExtractor("c1", "width: 65%; text-align: left", "<%--", "--%>").Execute(content);
-                if (ext != "")
-                    content = content.Replace(ext, "<%-- [DATE] --%>");
-
-                content = new SqlKeyValCompile(@"C:\temp\CIOCompileKV.sql").Execute(content);   
-                
-                FileWriter fw = new FileWriter($"C:\\temp\\pub\\{GetFileName(file.Name)}");
+                FileWriter fw = new FileWriter($"{dest}\\{GetFileName(file.Name)}");
                 fw.Write(content);
                  
-                //Cache.Append( "\n" + GetFileName(file.Name) );
+               // Cache.Append( "\n" + GetFileName(file.Name) );
             }
-           
+            //Cache.CacheEdit();
         }
-        private static void PreparePKEYSql()
+        
+        private static void GenerateNewControlTemplate( )
         {
+            StringBuilder sb = new StringBuilder();
             string content, template;
-  
-            content = new FileReader().Read();
-            template = new PathCompile().Execute(content); 
-             
-            content = new RepeaterCompile(1, 25).Execute(template);
-            content = new IndexCompile(1350, 0, "[index1]").Execute(content);
-            content = new IndexCompile(1600, 0, "[index2]").Execute(content);
-            Cache.Append(content);
-             
-            content = new RepeaterCompile(1, 250).Execute(template);
-            content = new IndexCompile(16099, 0, "[index1]").Execute(content);
-            content = new IndexCompile(17420, 0, "[index2]").Execute(content);
-            Cache.Append(content);
-  
-            Cache.CacheEdit();
-
-            //string template_insert = new FileReader($"C:\\temp\\templates\\SQLKVTEMPLATE.txt").Read().ToString();
-            //template_insert = template_insert.Replace("[INSERTS]", Cache.Read());
-            //FileWriter fw = new FileWriter($"C:\\temp\\SQLKVTEMPLATE.sql");
-            //fw.Write(template_insert);
-        }
-        private static void Process_DB_Update()
-        {
-            //
-            string root = @"D:\dev\CyberScope\CS-7-19\CSwebdev\database\DB_Update7.19_CIOQ120.sql";
-            string ext, content;
-
-            content = new FileReader(root).Read().ToString();
-            content = new SqlKeyValCompile(@"C:\temp\DB_UPDATE_CompileKV.sql").Execute(content);
-
-            FileWriter fw = new FileWriter($"C:\\temp\\pub\\DB_Update7.19_CIOQ120.sql");
+            template = new FileReader(@"C:\temp\templates\CBNumeric.txt").Read().ToString();
+            for (int i = 30; i < 38; i++)
+            {
+                sb.Append(template.Replace("[CBNID1]", i.ToString()));
+            }  
+            content = sb.ToString();
+            content = new IndexCompile(50, 0, "[CB_ID_1]").Execute(content);   
+            content = new IndexCompile(5, 0, "[PKQ]").Execute(content);
+          
+            //Cache.Append(content);
+            //Cache.CacheEdit();
+            FileWriter fw = new FileWriter($"C:\\temp\\templates\\CIO2020Q11-3-5.txt");
             fw.Write(content);
 
         }
 
+        private static void Process_DB_Update()
+        { 
+            string root = @"D:\dev\CyberScope\CS-7-19\CSwebdev\database\DB_Update7.19_CIOQ120.sql";
+            string ext, content; 
+            content = new FileReader(root).Read().ToString();
+            content = new SqlKeyValCompile(@"C:\temp\DB_UPDATE_CompileKV.sql").Execute(content); 
+            FileWriter fw = new FileWriter($"C:\\temp\\pub\\DB_Update7.19_CIOQ120.sql");
+            fw.Write(content); 
+        } 
         private static string GetFileName(string fname) {
             fname = fname.Replace("2019", "2020");
             fname = fname.Replace("Q4", "Q1");
