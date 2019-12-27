@@ -17,13 +17,14 @@ namespace CSCodeCompiler
         public static void Run(string[] args)
         { 
             StringBuilder sb = new StringBuilder();
-            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\archive\";
+            string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\database\";
+            // root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\code\CyberScope\FismaForms\2020";
             // string root = @"D:\dev\CyberScope\CyberScopeBranch\CSwebdev\";
             // string root = @"D:\dev\CyberBalance\trunk\projects"; 
-            string find = "Appendix A provides a summary of the FISMA CAP Goal Metric";
+            string find = ";WITH";
             Cache.Write(""); 
-            CodeLookup(root, find, "*.*");
-            Cache.CacheEdit();
+            CodeLookup(root, find, "*.sql"); 
+            Cache.CacheEdit(); 
    
         }
         private static void CodeLookup(string root, string find, string pattern) {

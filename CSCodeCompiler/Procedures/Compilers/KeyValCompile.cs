@@ -14,8 +14,10 @@ namespace CSCodeCompiler.Procedures
         public Dictionary<string, string> Dict { get; set; }
         public virtual string Execute(string compileme)
         {
-            foreach (var item in Dict)
-                compileme = compileme.Replace(item.Key,item.Value);
+            foreach (var item in Dict) { 
+                    compileme = compileme.Replace(item.Key, item.Value);
+                
+            }
             return compileme;        
         }
         public override string ToString()

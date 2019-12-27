@@ -22,14 +22,11 @@ namespace CSCodeCompiler
      {
         static void Main(string[] args)
         {
-            //CSCodeCompiler.FFCIOCompiler.Run(new string[] { });
+            //CSCodeCompiler.FFCIOCompiler.Run( new string[] { });
             //  CSCodeCompiler.Bootstrapper.Run();
-            //  CSCodeCompiler.DirSearcher.Run(new string[] { });
-            //  CSCodeCompiler.JiraTicketService.Run(new string[] { });
-            CSCodeCompiler.DataTransUtil.Run();  
-            // PrepareImport();
-      
-             
+            CSCodeCompiler.DirSearcher.Run( new string[] { }); 
+            //  CSCodeCompiler.DataTransUtil.Run();  
+            //  PrepareImport();
 
             return; 
         }

@@ -10,8 +10,11 @@ using System.Threading.Tasks;
 namespace CSCodeCompiler.Data
 { 
     public abstract class DBReader<T>
-    { 
-        public SqlDataReader oReader { get; set; }
+    {
+        public virtual T Data { get; set; }
+        public abstract void UnloadReader();
+        
+        public SqlDataReader oReader { get; set; } 
         public virtual void ExecuteSql(string sSql)
         {
             var con = ConfigurationManager.ConnectionStrings["Cyberscope123"].ToString();
@@ -22,15 +25,14 @@ namespace CSCodeCompiler.Data
                 using (oReader = oCmd.ExecuteReader())
                 {
                     while (oReader.Read())
-                    {
+                    { 
                         UnloadReader();
-                    }     
+                    }
                     myConnection.Close();
                 }
             }
         } 
-        public abstract void UnloadReader(); 
-        public virtual T Data  {get;set;}
+
     }
     public interface IDBReader {
         void ExecuteRead();
