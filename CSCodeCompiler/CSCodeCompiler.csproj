@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\temp\pub\</PublishUrl>
-    <Install>true</Install>
+    <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -63,7 +63,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.11.12.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -81,49 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Extentions\StringExtentions.cs" />
-    <Compile Include="IO\Cache.cs" />
-    <Compile Include="Macros\BaseMacro.cs" />
-    <Compile Include="Procedures\Parsers\JiraTicketParse.cs" />
-    <Compile Include="Procedures\Verifiers\MustHaveVerifier.cs" />
-    <Compile Include="Procedures\Parsers\ContextExtractor.cs" />
-    <Compile Include="Procedures\Parsers\BlockExtractor.cs" />
-    <Compile Include="Projects\FFCIOCompiler.cs" />
-    <Compile Include="Projects\JiraTicketService.cs" />
-    <Compile Include="Projects\DataTransUtil.cs" />
-    <Compile Include="Reflection\Program.cs" />
-    <Compile Include="Reflection\Invoker.cs" />
-    <Compile Include="Procedures\Compilers\PathCompile.cs" />
-    <Compile Include="Procedures\Compilers\RepeaterCompile.cs" />
-    <Compile Include="Procedures\Compilers\RegexCompile.cs" />
-    <Compile Include="Procedures\Compilers\KeyValCompile.cs" />
-    <Compile Include="Procedures\Compilers\IndexCompile.cs" />
-    <Compile Include="Macros\Macro.cs" />
-    <Compile Include="Macros\IMacro.cs" />
-    <Compile Include="Procedures\Compilers\IProcedure.cs" />
-    <Compile Include="Procedures\Compilers\CustomCompile.cs" />
-    <Compile Include="Data\DBUtils.cs" />
-    <Compile Include="IO\IReader.cs" />
-    <Compile Include="IO\IWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Procedures\Parsers\CustomParse.cs" />
-    <Compile Include="Reflection\TypeUtils.cs" />
-    <Compile Include="Projects\DirSearcher.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Procedures\Formatters\" />
-    <Folder Include="Procedures\Transformers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="CSCodeCompiler_TemporaryKey.pfx" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
